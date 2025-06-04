@@ -19,6 +19,7 @@ export default function AllTeacher() {
                                         <th scope="col">#</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">Edit</th>
                                         <th scope="col">Delete</th>
 
@@ -31,6 +32,7 @@ export default function AllTeacher() {
                                         <td>Mark</td>
 
                                         <td>@mdo</td>
+                                        <td>true</td>
                                         <td>
                                             <Link to="/admin/updateteacher" className="btn btn-success" >
                                                 <i className="fa-solid fa-pen-to-square" />
