@@ -6,11 +6,15 @@ const add = async (req, res) => {
     validation += "teacherId is required";
   }
   if (!req.body.classId) {
-    validation += "classId is required";
+    validation += " classId is required";
   }
 
   if (!req.body.title) {
-    validation += "title is required";
+    validation += " title is required";
+  }
+
+  if (!req.body.description) {
+    validation += " description is required";
   }
  
 

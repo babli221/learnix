@@ -1,0 +1,1613 @@
+{
+  "info": {
+    "name": "Project API Collection",
+    "_postman_id": "f428ba33-13bd-4e75-bb12-43c0245f586a",
+    "description": "Postman collection generated from project source code.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "POST /admin/dashboard",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/dashboard",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "dashboard"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/teacher/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/teacher/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "teacher",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/teacher/add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/teacher/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "teacher",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/teacher/all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/teacher/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "teacher",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/teacher/single",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/teacher/single",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "teacher",
+                "single"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/teacher/softDelete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/teacher/softDelete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "teacher",
+                "softDelete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/students/add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/students/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "students",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/students/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/students/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "students",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/students/single",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/students/single",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "students",
+                "single"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/students/all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/students/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "students",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/students/softDelete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/students/softDelete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "students",
+                "softDelete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/class/add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/class/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "class",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/class/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/class/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "class",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/class/single",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/class/single",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "class",
+                "single"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/class/all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/class/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "class",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/class/softDelete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/class/softDelete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "class",
+                "softDelete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/material/add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/material/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "material",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/material/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/material/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "material",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/material/softDelete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/material/softDelete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "material",
+                "softDelete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/material/single",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/material/single",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "material",
+                "single"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/material/all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/material/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "material",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/assignment/add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/assignment/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "assignment",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/assignment/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/assignment/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "assignment",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/assignment/single",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/assignment/single",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "assignment",
+                "single"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/assignment/all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/assignment/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "assignment",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/assignment/softDelete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/admin/assignment/softDelete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "admin",
+                "assignment",
+                "softDelete"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Students",
+      "item": [
+        {
+          "name": "POST /students/students/add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/students/students/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "students",
+                "students",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /students/students/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/students/students/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "students",
+                "students",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /students/students/single",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/students/students/single",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "students",
+                "students",
+                "single"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /students/students/all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/students/students/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "students",
+                "students",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /students/students/softDelete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/students/students/softDelete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "students",
+                "students",
+                "softDelete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /students/login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/students/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "students",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Teacher",
+      "item": [
+        {
+          "name": "POST /teacher/profile/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/profile/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "profile",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/students/add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/students/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "students",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/students/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/students/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "students",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/students/single",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/students/single",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "students",
+                "single"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/students/all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/students/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "students",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/students/softDelete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/students/softDelete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "students",
+                "softDelete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/class/add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/class/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "class",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/class/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/class/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "class",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/class/single",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/class/single",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "class",
+                "single"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/class/all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/class/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "class",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/class/softDelete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/class/softDelete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "class",
+                "softDelete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/material/add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/material/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "material",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/material/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/material/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "material",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/material/softDelete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/material/softDelete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "material",
+                "softDelete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/material/single",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/material/single",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "material",
+                "single"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/material/all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/material/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "material",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/assignment/add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/assignment/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "assignment",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/assignment/update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/assignment/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "assignment",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/assignment/single",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/assignment/single",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "assignment",
+                "single"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/assignment/all",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/assignment/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "assignment",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /teacher/assignment/softDelete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/teacher/assignment/softDelete",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "teacher",
+                "assignment",
+                "softDelete"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

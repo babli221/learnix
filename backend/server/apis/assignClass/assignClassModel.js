@@ -13,6 +13,7 @@ const assignClassSchema = new mongoose.Schema({
         required: true,
     },
     status: { type: Boolean, default: true },
+    file: { type: String, default: true },
     createdAt: { type: Date, default: Date.now },
 });
 

@@ -30,7 +30,7 @@ app.use("/admin", adminRoutes);
 
 const studentsRoutes = require("./server/routes/studentsRoutes");
 
-app.use("/students", studentsRoutes);
+app.use("/student", studentsRoutes);
 
 const teachersRoutes = require("./server/routes/teachersRoutes");
 

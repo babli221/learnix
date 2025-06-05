@@ -28,20 +28,11 @@ export default function TeacherHeader() {
 
 
                         <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                ShowClassJoined
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="showclassjoined" className="dropdown-item">
-                                    ShowClassJoined
-                                </Link>
-
-
-                            </div>
+                           
+                             <Link to="" className="nav-item nav-link active">
+                            Home
+                        </Link>
+                          
                         </div>
 
                         <div className="nav-item dropdown">
@@ -61,62 +52,7 @@ export default function TeacherHeader() {
                             </div>
                         </div>
 
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Add-Material
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="teacheraddmaterial" className="dropdown-item">
-                                    Add Material
-                                </Link>
-                                <Link to="teacherallmaterial" className="dropdown-item">
-                                    All Material
-                                </Link>
-
-                            </div>
-                        </div>
-
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Add-Assignment
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="teacheraddassignment" className="dropdown-item">
-                                    Add Assignment
-                                </Link>
-                                <Link to="teacherallassignment" className="dropdown-item">
-                                    All Assignment
-                                </Link>
-
-                            </div>
-                        </div>
-
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Add-Announcement
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="teacheraddannouncement" className="dropdown-item">
-                                    Add Announcement
-                                </Link>
-                                <Link to="teacherallannouncement" className="dropdown-item">
-                                    All Announcement
-                                </Link>
-
-                            </div>
-                        </div>
+                        
 
                         <div className="nav-item dropdown">
                             <Link

@@ -28,6 +28,7 @@ import SingleComment from './component/admin/comments/SingleComment'
 import SoftDeleteComment from './component/admin/comments/SoftDeleteComment'
 import UpdateComment from './component/admin/comments/UpdateComment'
 import Dashboard from './component/admin/dashboard/Dashboard'
+
 import AddMaterial from './component/admin/materials/AddMaterial'
 import AllMaterial from './component/admin/materials/AllMaterial'
 import SingleMaterial from './component/admin/materials/SingleMaterial'
@@ -64,7 +65,8 @@ import ViewJoinedClasses from './component/students/ViewJoinedClasses/ViewJoined
 import ShowMaterial from './component/students/ShowMaterial/ShowMaterial'
 import ShowAssignments from './component/students/ShowAssignments/ShowAssignments'
 import ShowAnnouncements from './component/students/ShowAnnouncements/ShowAnnouncements'
-import StudentProfileUpdate from './component/students/ProfileUpdate/StudentProfileUpdate'
+import SingleClass from './component/teacher/showclassjoined/SingleClass'
+
 
 
 
@@ -117,7 +119,8 @@ function App() {
           </Route>
 
           <Route path="/teacher" element={<TeacherMasterLayout></TeacherMasterLayout>}>
-            <Route path='/teacher/showclassjoined' element={<ShowClassJoined></ShowClassJoined>}></Route>
+          
+            <Route path='/teacher/' element={<ShowClassJoined></ShowClassJoined>}></Route>
             <Route path='/teacher/teacherprofileupdate' element={<TeacherProfileUpdate></TeacherProfileUpdate>}></Route>
 
             <Route path='/teacher/teacheraddmaterial' element={<TeacherAddMaterial></TeacherAddMaterial>}></Route>
@@ -133,6 +136,8 @@ function App() {
             <Route path='/teacher/teacherupdateannouncement' element={<TeacherUpdateAnnouncement></TeacherUpdateAnnouncement>}></Route>
 
             <Route path='/teacher/changepassword' element={<ChangePassword></ChangePassword>}></Route>
+            <Route path='/teacher/singleclass' element={<SingleClass></SingleClass>}></Route>
+            
           </Route>
 
           <Route path="/student" element={<StudentMasterLayout></StudentMasterLayout>}>
@@ -141,7 +146,7 @@ function App() {
           <Route path='/student/showmaterial' element={<ShowMaterial></ShowMaterial>}></Route>
           <Route path='/student/showassignments' element={<ShowAssignments></ShowAssignments>}></Route>
           <Route path='/student/showannouncements' element={<ShowAnnouncements></ShowAnnouncements>}></Route>
-          <Route path='/student/studentprofileupdate' element={<StudentProfileUpdate></StudentProfileUpdate>}></Route>
+          
 
 
           </Route>

@@ -102,83 +102,166 @@ const register = (req, res) => {
 }
 
 
+// const update = (req, res) => {
+//     validation = ''
+//     if (!req.body._id) {
+//         validation += "_id is required"
+//     }
+//     if (!!validation) {
+//         res.send({
+//             status: 400,
+//             success: false,
+//             message: validation
+//         })
+//     }
+//     else {
+//         Student.findOne({ _id: req.body._id }).then((studentData) => {
+//             if (studentData) {
+//                 if (req.body.name) {
+//                     studentData.name = req.body.name
+//                 }
+//                 if (req.body.contact) {
+//                     studentData.contact = req.body.contact
+//                 }
+//                 if (req.body.address) {
+//                     studentData.address = req.body.address
+//                 }
+//                 if (req.body.qualification) {
+//                     studentData.qualification = req.body.qualification
+//                 }
+//                 if (req.file) {
+//                     studentData.profile = "students/" + req.file.filename
+//                 }
+//                 studentData.save().then((updatedUser) => {
+//                     User.findOne({
+//                         studentId: req.body._id
+//                     }).then((userData) => {
+//                         if (userData) {
+//                             userData.name = req.body.name
+//                         }
+//                         userData.save().then(() => {
+//                             res.send({
+//                                 status: 200,
+//                                 success: true,
+//                                 message: "Record Updated",
+//                                 data: updatedUser
+//                             })
+//                         })
+
+//                     })
+
+
+
+//                 }).catch((err) => {
+//                     res.send({
+//                         success: false,
+//                         status: 400,
+//                         message: err
+//                     })
+//                 })
+
+//             }
+//             else {
+//                 res.send({
+//                     success: false,
+//                     status: 404,
+//                     message: "Student not found"
+//                 })
+//             }
+
+//         }).catch((err) => {
+//             res.send({
+//                 success: false,
+//                 status: 400,
+//                 message: err
+//             })
+//         })
+//     }
+
+// }
+
 const update = (req, res) => {
-    validation = ''
+    let validation = '';
     if (!req.body._id) {
-        validation += "_id is required"
+        validation += "_id is required. ";
     }
-    if (!!validation) {
-        res.send({
+    if (validation) {
+        return res.send({
             status: 400,
             success: false,
-            message: validation
-        })
+            message: validation.trim()
+        });
     }
-    else {
-        Student.findOne({ _id: req.body._id }).then((studentData) => {
-            if (studentData) {
-                if (req.body.name) {
-                    StudentData.name = req.body.name
-                }
-                if (req.body.contact) {
-                    StudentData.contact = req.body.contact
-                }
-                if (req.body.address) {
-                    StudentData.address = req.body.address
-                }
-                if (req.body.qualification) {
-                    StudentData.qualification = req.body.qualification
-                }
-                if (req.file) {
-                    StudentData.profile = "students/" + req.file.filename
-                }
-                StudentData.save().then((updatedUser) => {
-                    User.findOne({
-                        studentId: req.body._id
-                    }).then((userData) => {
-                        if (userData) {
-                            userData.name = req.body.name
-                        }
+
+    Student.findOne({ _id: req.body._id }).then((studentData) => {
+        if (studentData) {
+            // Update allowed fields if provided
+            if (req.body.name) studentData.name = req.body.name;
+            if (req.body.contact) studentData.contact = req.body.contact;
+            if (req.body.address) studentData.address = req.body.address;
+            if (req.body.qualification) studentData.qualification = req.body.qualification;
+            if (req.file) studentData.profile = "students/" + req.file.filename;
+
+            studentData.save().then((updatedStudent) => {
+                // Now update the User table
+                User.findOne({ studentId: req.body._id }).then((userData) => {
+                    if (userData) {
+                        if (req.body.name) userData.name = req.body.name;
+                        // If you want to update more fields, do it here
+
                         userData.save().then(() => {
                             res.send({
                                 status: 200,
                                 success: true,
                                 message: "Record Updated",
-                                data: updatedUser
-                            })
-                        })
-
-                    })
-
-
-
+                                data: updatedStudent
+                            });
+                        }).catch((err) => {
+                            res.send({
+                                success: false,
+                                status: 400,
+                                message: err
+                            });
+                        });
+                    } else {
+                        // User record might not exist, still return student update
+                        res.send({
+                            status: 200,
+                            success: true,
+                            message: "Student record updated, user record not found.",
+                            data: updatedStudent
+                        });
+                    }
                 }).catch((err) => {
                     res.send({
                         success: false,
                         status: 400,
                         message: err
-                    })
-                })
-
-            }
-            else {
+                    });
+                });
+            }).catch((err) => {
                 res.send({
                     success: false,
-                    status: 404,
-                    message: "Student not found"
-                })
-            }
-
-        }).catch((err) => {
+                    status: 400,
+                    message: err
+                });
+            });
+        } else {
             res.send({
                 success: false,
-                status: 400,
-                message: err
-            })
-        })
-    }
+                status: 404,
+                message: "Student not found"
+            });
+        }
+    }).catch((err) => {
+        res.send({
+            success: false,
+            status: 400,
+            message: err
+        });
+    });
+};
 
-}
 
 const softDelete = (req, res) => {
     validation = ''
@@ -197,11 +280,11 @@ const softDelete = (req, res) => {
     }
     else {
         Student.findOne({ _id: req.body._id }).then((studentData) => {
-            if (StudentData) {
+            if (studentData) {
                 if (req.body.status) {
-                    StudentData.status = req.body.status
+                    studentData.status = req.body.status
                 }
-                StudentData.save().then((updatedStudent) => {
+                studentData.save().then((updatedStudent) => {
                     res.send({
                         status: 200,
                         success: true,
@@ -303,10 +386,6 @@ const all = async (req, res) => {
     })
 
 }
-
-
-
-
 
 
 module.exports = {

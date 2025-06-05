@@ -25,22 +25,7 @@ export default function StudentHeader(){
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav ms-auto p-4 p-lg-0">
 
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Profile-Update
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="studentprofileupdate" className="dropdown-item">
-                                    Profile-Update
-                                </Link>
-
-
-                            </div>
-                        </div>
+                        
 
 
 

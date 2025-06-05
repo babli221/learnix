@@ -27,8 +27,8 @@ const teacherStorage = multer.diskStorage({
     }
 })
 const teacherUpload = multer({ storage: teacherStorage })
+router.post("/teacher/add", teacherUpload.single('profile'), teacherController.register)
 router.post("/teacher/update", teacherUpload.single('profile'), teacherController.update)
-router.post("/teacher/add", teacherUpload.single('profile'), teacherController.add)
 router.post("/teacher/all", teacherUpload.single('profile'), teacherController.all)
 router.post("/teacher/single", teacherUpload.single('profile'), teacherController.single)
 router.post("/teacher/softDelete", teacherUpload.single('profile'), teacherController.softDelete)
@@ -47,70 +47,70 @@ router.post("/class/softDelete", classController.softDelete)
 
 
 
-const materialStorage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './server/public/materials')
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + uniqueSuffix + "-" + file.originalname)
-    }
-})
+// const materialStorage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './server/public/materials')
+//     },
+//     filename: function (req, file, cb) {
+//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//         cb(null, file.fieldname + '-' + uniqueSuffix + "-" + file.originalname)
+//     }
+// })
 
-const materialUpload = multer({ storage: materialStorage })
+// const materialUpload = multer({ storage: materialStorage })
 
-router.post("/material/add", materialUpload.single('file'), materialsController.add);
-router.post("/material/update", materialUpload.single('file'), materialsController.update);
-router.post("/material/softDelete", materialsController.softDelete)
-router.post("/material/single", materialsController.single)
-router.post("/material/all", materialsController.all)
+// router.post("/material/add", materialUpload.single('file'), materialsController.add);
+// router.post("/material/update", materialUpload.single('file'), materialsController.update);
+// router.post("/material/softDelete", materialsController.softDelete)
+// router.post("/material/single", materialsController.single)
+// router.post("/material/all", materialsController.all)
 
 
 // Assignments........................
 
 
-const assignmentStorage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './server/public/assignments')
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + uniqueSuffix + "-" + file.originalname)
-    }
-})
+// const assignmentStorage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './server/public/assignments')
+//     },
+//     filename: function (req, file, cb) {
+//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//         cb(null, file.fieldname + '-' + uniqueSuffix + "-" + file.originalname)
+//     }
+// })
 
-const assignmentUpload = multer({ storage: assignmentStorage })
+// const assignmentUpload = multer({ storage: assignmentStorage })
 
 
-router.post("/assignment/add", assignmentUpload.single('file'), assignmentsController.add)
-router.post("/assignment/update", assignmentUpload.single('file'), assignmentsController.update)
-router.post("/assignment/single", assignmentsController.single)
-router.post("/assignment/all", assignmentsController.all)
-router.post("/assignment/softDelete", assignmentsController.softDelete)
+// router.post("/assignment/add", assignmentUpload.single('file'), assignmentsController.add)
+// router.post("/assignment/update", assignmentUpload.single('file'), assignmentsController.update)
+// router.post("/assignment/single", assignmentsController.single)
+// router.post("/assignment/all", assignmentsController.all)
+// router.post("/assignment/softDelete", assignmentsController.softDelete)
 
 
 // Assignments routes end........................
 
 
 // Announcements Routes
-const announcementStorage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './server/public/announcements')
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + uniqueSuffix + "-" + file.originalname)
-    }
-})
+// const announcementStorage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './server/public/announcements')
+//     },
+//     filename: function (req, file, cb) {
+//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//         cb(null, file.fieldname + '-' + uniqueSuffix + "-" + file.originalname)
+//     }
+// })
 
 
-const announcementUpload = multer({ storage: announcementStorage })
+// const announcementUpload = multer({ storage: announcementStorage })
 
-router.post("/announcement/add", announcementUpload.single('file'), announcementsController.add)
-router.post("/announcement/update", announcementUpload.single('file'), announcementsController.update)
-router.post("/announcement/single", announcementsController.single)
-router.post("/announcement/all", announcementsController.all)
-router.post("/announcement/softDelete", announcementsController.softDelete)
+// router.post("/announcement/add", announcementUpload.single('file'), announcementsController.add)
+// router.post("/announcement/update", announcementUpload.single('file'), announcementsController.update)
+// router.post("/announcement/single", announcementsController.single)
+// router.post("/announcement/all", announcementsController.all)
+// router.post("/announcement/softDelete", announcementsController.softDelete)
 
 
 
@@ -119,34 +119,34 @@ router.post("/announcement/softDelete", announcementsController.softDelete)
 
 // comments....................
 
-router.post("/comment/add", commentController.add)
-router.post("/comment/update", commentController.update)
-router.post("/comment/single", commentController.single)
-router.post("/comment/all", commentController.all)
-router.post("/comment/softDelete", commentController.softDelete)
+// router.post("/comment/add", commentController.add)
+// router.post("/comment/update", commentController.update)
+// router.post("/comment/single", commentController.single)
+// router.post("/comment/all", commentController.all)
+// router.post("/comment/softDelete", commentController.softDelete)
 
 // comments....................
 
 //Assign..........................
 
-const assignStorage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './server/public/assign')
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + uniqueSuffix + "-" + file.originalname)
-    }
-})
+// const assignStorage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './server/public/assign')
+//     },
+//     filename: function (req, file, cb) {
+//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//         cb(null, file.fieldname + '-' + uniqueSuffix + "-" + file.originalname)
+//     }
+// })
 
 
-const assignUpload = multer({ storage: assignStorage })
+// const assignUpload = multer({ storage: assignStorage })
 
-router.post("/assign/add", assignUpload.single('file'), assignClassController.add)
-router.post("/assign/update", assignUpload.single('file'), assignClassController.update)
-router.post("/assign/single", assignClassController.single)
-router.post("/assign/all", assignClassController.all)
-router.post("/assign/softDelete", assignClassController.softDelete)
+// router.post("/assign/add", assignUpload.single('file'), assignClassController.add)
+// router.post("/assign/update", assignUpload.single('file'), assignClassController.update)
+// router.post("/assign/single", assignClassController.single)
+// router.post("/assign/all", assignClassController.all)
+// router.post("/assign/softDelete", assignClassController.softDelete)
 //Assign..........................................
 
 

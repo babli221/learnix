@@ -3,14 +3,12 @@ const Assign = require("./assignClassModel")
 const add = async (req, res) => {
 
     let validation = "";
-    if (!req.body._id) {
-        validation += "_id is required";
-    }
+   
     if (!req.body.classId) {
-        validation += "classId is required";
+        validation += " classId is required";
     }
     if (!req.body.studentId) {
-        validation += "studentId is required";
+        validation += " studentId is required";
     }
     if (!!validation) {
         res.send({
@@ -54,6 +52,15 @@ const update = (req, res) => {
     if (!req.body._id) {
         validation += "_id is required";
     }
+
+    if (!req.body.classId) {
+        validation += " classId is required";
+    }
+
+    if (!req.body.studentId) {
+        validation += " studentId is required";
+    }
+
     if (!!validation) {
         res.send({
             status: 400,

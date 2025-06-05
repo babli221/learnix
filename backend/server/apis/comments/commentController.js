@@ -6,7 +6,7 @@ const add = async (req, res) => {
         validation += "announcementId is required";
     }
     if (!req.body.comment) {
-        validation += "comment is required";
+        validation += " comment is required";
     }
     if (!!validation) {
         res.send({
@@ -228,14 +228,6 @@ const all = async (req, res) => {
             });
         });
 };
-
-
-
-
-
-
-
-
 
 
 module.exports = {

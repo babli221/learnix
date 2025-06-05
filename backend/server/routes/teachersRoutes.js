@@ -24,16 +24,16 @@ const teacherStorage = multer.diskStorage({
 const teacherUpload = multer({ storage: teacherStorage })
 router.post("/profile/update", teacherUpload.single('profile'), teacherController.update)
 
-router.post("/students/add", studentsController.register)
-router.post("/students/update", studentsController.update)
-router.post("/students/single", studentsController.single)
-router.post("/students/all", studentsController.all)
-router.post("/students/softDelete", studentsController.softDelete)
+// router.post("/students/add", studentsController.register)
+// router.post("/students/update", studentsController.update)
+// router.post("/students/single", studentsController.single)
+// router.post("/students/all", studentsController.all)
+// router.post("/students/softDelete", studentsController.softDelete)
 
 // router.post("/class/add", classController.add)
 // router.post("/class/update", classController.update)
-// router.post("/class/single", classController.single)
-// router.post("/class/all", classController.all)
+router.post("/class/single", classController.single)
+router.post("/class/all", classController.all)
 // router.post("/class/softDelete", classController.softDelete)
 
 
@@ -118,27 +118,7 @@ router.post("/comment/softDelete", commentController.softDelete)
 
 // comments....................
 
-//Assign..........................
 
-const assignStorage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './server/public/assign')
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + uniqueSuffix + "-" + file.originalname)
-    }
-})
-
-
-const assignUpload = multer({ storage: assignStorage })
-
-router.post("/assign/add", assignUpload.single('file'), assignClassController.add)
-router.post("/assign/update", assignUpload.single('file'), assignClassController.update)
-router.post("/assign/single", assignClassController.single)
-router.post("/assign/all", assignClassController.all)
-router.post("/assign/softDelete", assignClassController.softDelete)
-//Assign..........................................
 
 
 // user
