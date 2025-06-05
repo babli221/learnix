@@ -1,4 +1,41 @@
+import { useState } from "react"
+import ApiServices from "../../layout/ApiServices"
+import { toast } from "react-toastify"
+
 export default function AddStudent(){
+
+    // Make States
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    function handleForm(e) {
+        e.preventDefault()
+        //console.log(name, email, password)
+        let data = {
+            name : name,
+            email : email,
+            password : password
+        }
+        ApiServices.AddStudent(data)
+                .then((res) => {
+                    console.log(res.data)
+                    if(res.data.success){
+                        toast.success(res.data.message)
+
+                        setName("")
+                        setEmail("")
+                        setPassword("")
+
+            }else{
+                toast.error(res.data.message)
+            }
+        })
+        .catch((err) => {
+            toast.error("Something Went Wrong")
+            console.log(err)
+        })
+    }
     return(
         <>
         {/* Add Student */}
@@ -13,7 +50,7 @@ export default function AddStudent(){
                     <div className="row g-4 justify-content-center d-flex">
 
                         <div className="col-lg-4 col-md-12  wow fadeInUp" data-wow-delay="0.5s">
-                            <form>
+                            <form onSubmit={handleForm}>
                                 <div className="row g-3 ">
 
                                     <div className="col-12">
@@ -22,7 +59,11 @@ export default function AddStudent(){
                                                 type="text"
                                                 className="form-control"
                                                 id="text"
-                                                placeholder="Name Of Teacher"
+                                                placeholder="Name Of Student"
+                                                value={name}
+                                                onChange={(e) => {
+                                                    setName(e.target.value)
+                                                }}
                                             />
                                             <label htmlFor="email">Name</label>
                                         </div>
@@ -33,7 +74,11 @@ export default function AddStudent(){
                                                 type="email"
                                                 className="form-control"
                                                 id="email"
-                                                placeholder="Your Email"
+                                                placeholder="Student Email"
+                                                value={email}
+                                                onChange={(e) => {
+                                                    setEmail(e.target.value)
+                                                }}
                                             />
                                             <label htmlFor="email">Email</label>
                                         </div>
@@ -45,6 +90,10 @@ export default function AddStudent(){
                                                 className="form-control"
                                                 id="Password"
                                                 placeholder="Password"
+                                                value={password}
+                                                onChange={(e) => {
+                                                    setPassword(e.target.value)
+                                                }}
                                             />
                                             <label htmlFor="Password">Password</label>
                                         </div>

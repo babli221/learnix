@@ -66,6 +66,8 @@ import ShowMaterial from './component/students/ShowMaterial/ShowMaterial'
 import ShowAssignments from './component/students/ShowAssignments/ShowAssignments'
 import ShowAnnouncements from './component/students/ShowAnnouncements/ShowAnnouncements'
 import SingleClass from './component/teacher/showclassjoined/SingleClass'
+import { ToastContainer } from 'react-toastify'
+import AdminChangePassword from './component/admin/ChangePassword/AdminChangePassword'
 
 
 
@@ -116,6 +118,8 @@ function App() {
             <Route path='/admin/addcomment' element={<AddComment></AddComment>}></Route>
             <Route path='/admin/allcomment' element={<AllComment></AllComment>}></Route>
             <Route path='/admin/updatecomment' element={<UpdateComment></UpdateComment>}></Route>
+
+            <Route path='/admin/adminchangepassword' element={<AdminChangePassword></AdminChangePassword>}></Route>
           </Route>
 
           <Route path="/teacher" element={<TeacherMasterLayout></TeacherMasterLayout>}>
@@ -152,6 +156,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ToastContainer></ToastContainer>
     </>
   );
 }

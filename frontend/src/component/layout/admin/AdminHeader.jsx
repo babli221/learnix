@@ -87,6 +87,12 @@ export default function AdminHeader() {
                             </div>
                         </div>
 
+                        <Link to="adminchangepassword" className="nav-item nav-link active">
+                            Change-Password
+                        </Link>
+
+
+
 
 
 

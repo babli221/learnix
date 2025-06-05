@@ -1,4 +1,46 @@
+import { useState } from "react"
+import ApiServices from "../../layout/ApiServices"
+import { toast } from "react-toastify"
+
+
 export default function AddClass() {
+
+    // Make States
+    const [name, setName] = useState("")
+    const [teachername, setTeacherName] = useState("")
+    const [description, setDescription] = useState("")
+    const [classlink, setClassLink] = useState("")
+
+    function handleForm(e) {
+        e.preventDefault()
+        //console.log(name, teachername, description, classlink)
+        let data = {
+            name : name,
+            description : description,
+            teacherId : teachername,
+            classLink : classlink
+        }
+
+        ApiServices.AddClass(data)
+        .then((res) => {
+            console.log(res.data)
+            if(res.data.success){
+                toast.success(res.data.message)
+
+                setName("")
+                setTeacherName("")
+                setDescription("")
+                setClassLink("")
+
+            }else{
+                toast.error(res.data.message)
+            }
+        })
+        .catch((err) => {
+            toast.error("Something Went Wrong")
+            console.log(err)
+        })
+    }
     return (
         <>
             {/* Add Class */}
@@ -13,7 +55,7 @@ export default function AddClass() {
                     <div className="row g-4 justify-content-center d-flex">
 
                         <div className="col-lg-4 col-md-12  wow fadeInUp" data-wow-delay="0.5s">
-                            <form>
+                            <form onSubmit={handleForm}>
                                 <div className="row g-3 ">
 
                                     <div className="col-12">
@@ -22,12 +64,63 @@ export default function AddClass() {
                                                 type="text"
                                                 className="form-control"
                                                 id="text"
-                                                placeholder="Name Of Teacher"
+                                                placeholder="Name Of Class"
+
+                                                value={name}
+                                                onChange={(e) => {
+                                                    setName(e.target.value)
+                                                }}
                                             />
-                                            <label htmlFor="email">Name</label>
+                                            <label htmlFor="text">Name</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="col-12">
+                                        <div className="form-floating">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="text"
+                                                placeholder="Name Of Teacher"
+                                                value={teachername}
+                                                onChange={(e) => {
+                                                    setTeacherName(e.target.value)
+                                                }}
+                                            />
+                                            <label htmlFor="text">TeacherID</label>
                                         </div>
                                     </div>
                                     <div className="col-12">
+                                        <div className="form-floating">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="text"
+                                                placeholder="Description"
+                                                value={description}
+                                                onChange={(e) => {
+                                                    setDescription(e.target.value)
+                                                }}
+                                            />
+                                            <label htmlFor="text">Description</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-12">
+                                        <div className="form-floating">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="text"
+                                                placeholder="ClassLink"
+                                                value={classlink}
+                                                onChange={(e) => {
+                                                    setClassLink(e.target.value)
+                                                }}
+                                            />
+                                            <label htmlFor="text">ClassLink</label>
+                                        </div>
+                                    </div>
+                                    {/* <div className="col-12">
                                         <div className="form-floating">
                                             <select name="" id="" className="form-select">
                                                 <option value="">Mr Khurana</option>
@@ -37,7 +130,7 @@ export default function AddClass() {
                                             </select>
                                             <label htmlFor="text">Teacher</label>
                                         </div>
-                                    </div>
+                                    </div> */}
 
 
                                     <div className="col-12">

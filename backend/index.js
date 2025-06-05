@@ -4,7 +4,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json()); 
 
-const port = 6000;
+const port = 5000;
 const db = require("./server/config/db");
 const seed = require("./server/config/seed");
 
