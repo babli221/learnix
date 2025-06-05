@@ -46,15 +46,31 @@ import SingleTeacher from './component/admin/teachers/SingleTeacher'
 import AdminMasterLayout from './component/layout/admin/AdminMasterLayout'
 import TeacherMasterLayout from './component/layout/teacher/TeacherMasterLayout'
 import Login from './component/students/auth/Login'
+import ShowClassJoined from './component/teacher/showclassjoined/ShowClassJoined'
+import TeacherProfileUpdate from './component/teacher/profile update/TeacherProfileUpdate'
+import TeacherAddMaterial from './component/teacher/Materials/TeacherAddMaterial'
+import TeacherAllMaterial from './component/teacher/Materials/TeacherAllMaterial'
+import TeacherUpdateMaterial from './component/teacher/Materials/TeacherUpdateMaterial'
+import TeacherAddAssignment from './component/teacher/Assignments/TeacherAddAssignment'
+import TeacherAllAssignment from './component/teacher/Assignments/TeacherAllAssignment'
+import TeacherUpdateAssignment from './component/teacher/Assignments/TeacherUpdateAssignment'
+import TeacherAddAnnouncement from './component/teacher/Announcements/TeacherAddAnnouncement'
+import TeacherAllAnnouncement from './component/teacher/Announcements/TeacherAllAnnouncement'
+import TeacherUpdateAnnouncement from './component/teacher/Announcements/TeacherUpdateAnnouncement'
+import ChangePassword from './component/teacher/ChangePassword/ChangePassword'
+import StudentMasterLayout from './component/layout/student/StudentMasterLayout'
+import StudentChangePassword from './component/students/StudentChangePassword/StudentChangePassword'
+import ViewJoinedClasses from './component/students/ViewJoinedClasses/ViewJoinedClasses'
+import ShowMaterial from './component/students/ShowMaterial/ShowMaterial'
+import ShowAssignments from './component/students/ShowAssignments/ShowAssignments'
+import ShowAnnouncements from './component/students/ShowAnnouncements/ShowAnnouncements'
+import StudentProfileUpdate from './component/students/ProfileUpdate/StudentProfileUpdate'
 
 
 
 function App() {
-
-
   return (
     <>
-
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<MasterLayout></MasterLayout>}>
@@ -65,10 +81,7 @@ function App() {
             <Route path='/services' element={<Services></Services>}></Route>
             <Route path='/pages' element={<Pages></Pages>}></Route>
             <Route path='/contact' element={<Contact></Contact>}></Route>
-
             <Route path='/login' element={<Login></Login>}></Route>
-
-
 
           </Route>
 
@@ -101,23 +114,43 @@ function App() {
             <Route path='/admin/addcomment' element={<AddComment></AddComment>}></Route>
             <Route path='/admin/allcomment' element={<AllComment></AllComment>}></Route>
             <Route path='/admin/updatecomment' element={<UpdateComment></UpdateComment>}></Route>
-
-
-
-
-
           </Route>
+
           <Route path="/teacher" element={<TeacherMasterLayout></TeacherMasterLayout>}>
-            
+            <Route path='/teacher/showclassjoined' element={<ShowClassJoined></ShowClassJoined>}></Route>
+            <Route path='/teacher/teacherprofileupdate' element={<TeacherProfileUpdate></TeacherProfileUpdate>}></Route>
+
+            <Route path='/teacher/teacheraddmaterial' element={<TeacherAddMaterial></TeacherAddMaterial>}></Route>
+            <Route path='/teacher/teacherallmaterial' element={<TeacherAllMaterial></TeacherAllMaterial>}></Route>
+            <Route path='/teacher/teacherupdatematerial' element={<TeacherUpdateMaterial></TeacherUpdateMaterial>}></Route>
+
+            <Route path='/teacher/teacheraddassignment' element={<TeacherAddAssignment></TeacherAddAssignment>}></Route>
+            <Route path='/teacher/teacherallassignment' element={<TeacherAllAssignment></TeacherAllAssignment>}></Route>
+            <Route path='/teacher/teacherupdateassignment' element={<TeacherUpdateAssignment></TeacherUpdateAssignment>}></Route>
+
+            <Route path='/teacher/teacheraddannouncement' element={<TeacherAddAnnouncement></TeacherAddAnnouncement>}></Route>
+            <Route path='/teacher/teacherallannouncement' element={<TeacherAllAnnouncement></TeacherAllAnnouncement>}></Route>
+            <Route path='/teacher/teacherupdateannouncement' element={<TeacherUpdateAnnouncement></TeacherUpdateAnnouncement>}></Route>
+
+            <Route path='/teacher/changepassword' element={<ChangePassword></ChangePassword>}></Route>
           </Route>
 
+          <Route path="/student" element={<StudentMasterLayout></StudentMasterLayout>}>
+          <Route path='/student/studentchangepassword' element={<StudentChangePassword></StudentChangePassword>}></Route>
+          <Route path='/student/viewjoinedclasses' element={<ViewJoinedClasses></ViewJoinedClasses>}></Route>
+          <Route path='/student/showmaterial' element={<ShowMaterial></ShowMaterial>}></Route>
+          <Route path='/student/showassignments' element={<ShowAssignments></ShowAssignments>}></Route>
+          <Route path='/student/showannouncements' element={<ShowAnnouncements></ShowAnnouncements>}></Route>
+          <Route path='/student/studentprofileupdate' element={<StudentProfileUpdate></StudentProfileUpdate>}></Route>
+
+
+          </Route>
         </Routes>
       </BrowserRouter>
-
-
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
 

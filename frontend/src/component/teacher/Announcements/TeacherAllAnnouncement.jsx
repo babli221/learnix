@@ -1,45 +1,43 @@
 import { Link } from "react-router-dom";
 
-export default function TeacherAllAssignment() {
+export default function TeacherAllAnnouncement() {
     return (
         <>
+            {/* All Announcements */}
             <div className="container-xxl py-5">
                 <div className="container">
                     <div className="row d-flex justify-content-center">
                         <div className="col-12 text-center">
-                            <h2 className="my-5">All Assignments</h2>
+                            <h2 className="my-5">All Announcements</h2>
                         </div>
                     </div>
 
                     <div className="row">
                         <div className="col-12">
-                            <table className="table">
-                                <thead>
+                            <table className="table table-bordered text-center">
+                                <thead className="table-light">
                                     <tr>
                                         <th scope="col">S No.</th>
                                         <th scope="col">Title</th>
                                         <th scope="col">Teacher</th>
                                         <th scope="col">Class</th>
                                         <th scope="col">Description</th>
-                                        <th scope="col">Marks</th>
-                                        <th scope="col">Due Date</th>
                                         <th scope="col">File</th>
                                         <th scope="col">Edit</th>
                                         <th scope="col">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {/* Sample row (you can map through real data here) */}
                                     <tr>
                                         <th scope="row">1</th>
-                                        <td>Complete your Assignment</td>
-                                        <td>Teacher2</td>
-                                        <td>BCA</td>
-                                        <td>React Assignment</td>
-                                        <td>20</td>
-                                        <td>04-06-2025</td>
+                                        <td>Important Exam Announcement</td>
+                                        <td>Mr Khan</td>
+                                        <td>Java</td>
+                                        <td>Mid-term Exam on Friday. Be prepared!</td>
                                         <td>
                                             <a
-                                                href="/materials/file-1741415873509-62161625-Teacher2.jpg"
+                                                href={`/materials/announcement-file1.pdf`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                             >
@@ -47,7 +45,7 @@ export default function TeacherAllAssignment() {
                                             </a>
                                         </td>
                                         <td>
-                                            <Link to="/teacher/teacherupdateassignment" className="btn btn-success">
+                                            <Link to="/teacher/teacherupdateannouncement" className="btn btn-success">
                                                 <i className="fa-solid fa-pen-to-square" />
                                             </Link>
                                         </td>
@@ -57,12 +55,14 @@ export default function TeacherAllAssignment() {
                                             </button>
                                         </td>
                                     </tr>
+                                    {/* Add more rows by mapping data */}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+            {/* End All Announcements */}
         </>
     );
 }

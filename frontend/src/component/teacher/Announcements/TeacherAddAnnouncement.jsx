@@ -1,14 +1,14 @@
-export default function TeacherUpdateMaterial() {
+export default function TeacherAddAnnouncement() {
     return (
         <>
-            {/* Update Material */}
+            {/* Add Announcement Section */}
             <div className="container-xxl py-5">
                 <div className="container">
                     <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
                         <h6 className="section-title bg-white text-center text-primary px-3">
-                            Update Material
+                            Add New Announcement
                         </h6>
-                        <h1 className="mb-5">Enter Details To Update Material</h1>
+                        <h1 className="mb-5">Enter Details of New Announcement</h1>
                     </div>
 
                     <div className="row g-4 justify-content-center d-flex">
@@ -16,44 +16,44 @@ export default function TeacherUpdateMaterial() {
                             <form>
                                 <div className="row g-3">
 
-                                    {/* Select Teacher */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="teacher" className="form-select" required>
-                                                <option value="">-- Select Teacher --</option>
-                                                <option value="mr_khurana">Mr. Khurana</option>
-                                                <option value="mr_khan">Mr. Khan</option>
-                                                <option value="john">John</option>
-                                                <option value="mohinder">Mohinder</option>
-                                            </select>
-                                            <label htmlFor="teacher">Teacher</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Select Class */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="class" className="form-select" required>
-                                                <option value="">-- Select Class --</option>
-                                                <option value="react">React</option>
-                                                <option value="javascript">JavaScript</option>
-                                                <option value="java">Java</option>
-                                            </select>
-                                            <label htmlFor="class">Class</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Material Title */}
+                                    {/* Title */}
                                     <div className="col-12">
                                         <div className="form-floating">
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                id="title"
-                                                placeholder="Enter Title"
+                                                id="announcementTitle"
+                                                placeholder="Enter Announcement Title"
                                                 required
                                             />
-                                            <label htmlFor="title">Material Title</label>
+                                            <label htmlFor="announcementTitle">Title</label>
+                                        </div>
+                                    </div>
+
+                                    {/* Class Selection */}
+                                    <div className="col-md-6">
+                                        <div className="form-floating">
+                                            <select id="announcementClass" className="form-select" required>
+                                                <option value="">-- Select Class --</option>
+                                                <option value="react">React</option>
+                                                <option value="java">Java</option>
+                                                <option value="javascript">JavaScript</option>
+                                            </select>
+                                            <label htmlFor="announcementClass">Class</label>
+                                        </div>
+                                    </div>
+
+                                    {/* Teacher Selection */}
+                                    <div className="col-md-6">
+                                        <div className="form-floating">
+                                            <select id="announcementTeacher" className="form-select" required>
+                                                <option value="">-- Select Teacher --</option>
+                                                <option value="khurana">Mr Khurana</option>
+                                                <option value="khan">Mr Khan</option>
+                                                <option value="john">John</option>
+                                                <option value="mohinder">Mohinder</option>
+                                            </select>
+                                            <label htmlFor="announcementTeacher">Teacher</label>
                                         </div>
                                     </div>
 
@@ -62,31 +62,29 @@ export default function TeacherUpdateMaterial() {
                                         <div className="form-floating">
                                             <textarea
                                                 className="form-control"
-                                                id="description"
+                                                id="announcementDescription"
                                                 placeholder="Enter Description"
                                                 style={{ height: '100px' }}
-                                                required
                                             ></textarea>
-                                            <label htmlFor="description">Material Description</label>
+                                            <label htmlFor="announcementDescription">Description</label>
                                         </div>
                                     </div>
 
-                                    {/* Upload File */}
+                                    {/* File Upload */}
                                     <div className="col-12">
-                                        <label className="form-label fw-bold">Upload Material File</label>
+                                        <label className="form-label fw-bold">Attach File (if any)</label>
                                         <input
                                             type="file"
                                             className="form-control"
-                                            id="file"
-                                            accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png"
-                                            required
+                                            id="announcementFile"
+                                            accept=".pdf,.doc,.docx,.jpg,.png"
                                         />
                                     </div>
 
                                     {/* Submit Button */}
                                     <div className="col-12">
                                         <button className="btn btn-primary w-100 py-3" type="submit">
-                                            Update Material
+                                            Add New Announcement
                                         </button>
                                     </div>
 
@@ -96,7 +94,7 @@ export default function TeacherUpdateMaterial() {
                     </div>
                 </div>
             </div>
-            {/* Update Material */}
+            {/* End Announcement Section */}
         </>
     );
 }

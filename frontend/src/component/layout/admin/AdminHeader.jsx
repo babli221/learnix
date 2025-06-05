@@ -49,7 +49,7 @@ export default function AdminHeader() {
                             </div>
                         </div>
 
-                         <div className="nav-item dropdown">
+                        <div className="nav-item dropdown">
                             <Link
                                 to=""
                                 className="nav-link dropdown-toggle"
@@ -86,83 +86,13 @@ export default function AdminHeader() {
 
                             </div>
                         </div>
-                    
 
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Material
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="addmaterial" className="dropdown-item">
-                                    Add Material
-                                </Link>
-                                <Link to="allmaterial" className="dropdown-item">
-                                    All Material
-                                </Link>
 
-                            </div>
-                        </div>
 
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Announcement
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="addannouncement" className="dropdown-item">
-                                    Add Announcement
-                                </Link>
-                                <Link to="allannouncement" className="dropdown-item">
-                                    All Announcement
-                                </Link>
 
-                            </div>
-                        </div>
 
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Assignment
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="addassignment" className="dropdown-item">
-                                    Add Assignment
-                                </Link>
-                                <Link to="allassignment" className="dropdown-item">
-                                    All Assignment
-                                </Link>
 
-                            </div>
-                        </div>
 
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Comment
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="addcomment" className="dropdown-item">
-                                    Add Comment
-                                </Link>
-                                <Link to="allcomment" className="dropdown-item">
-                                    All Comment
-                                </Link>
-
-                            </div>
-                        </div>
 
 
 

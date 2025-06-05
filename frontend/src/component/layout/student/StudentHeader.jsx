@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-export default function TeacherHeader() {
-    return (
+export default function StudentHeader(){
+    return(
         <>
-            {/* Navbar Start */}
+        {/* Navbar Start */}
             <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
                 <a
                     href="index.html"
@@ -25,35 +25,16 @@ export default function TeacherHeader() {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav ms-auto p-4 p-lg-0">
 
-
-
                         <div className="nav-item dropdown">
                             <Link
                                 to=""
                                 className="nav-link dropdown-toggle"
                                 data-bs-toggle="dropdown"
                             >
-                                ShowClassJoined
+                                Profile-Update
                             </Link>
                             <div className="dropdown-menu fade-down m-0">
-                                <Link to="showclassjoined" className="dropdown-item">
-                                    ShowClassJoined
-                                </Link>
-
-
-                            </div>
-                        </div>
-
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Profile Update
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="teacherprofileupdate" className="dropdown-item">
+                                <Link to="studentprofileupdate" className="dropdown-item">
                                     Profile-Update
                                 </Link>
 
@@ -61,62 +42,7 @@ export default function TeacherHeader() {
                             </div>
                         </div>
 
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Add-Material
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="teacheraddmaterial" className="dropdown-item">
-                                    Add Material
-                                </Link>
-                                <Link to="teacherallmaterial" className="dropdown-item">
-                                    All Material
-                                </Link>
 
-                            </div>
-                        </div>
-
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Add-Assignment
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="teacheraddassignment" className="dropdown-item">
-                                    Add Assignment
-                                </Link>
-                                <Link to="teacherallassignment" className="dropdown-item">
-                                    All Assignment
-                                </Link>
-
-                            </div>
-                        </div>
-
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Add-Announcement
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="teacheraddannouncement" className="dropdown-item">
-                                    Add Announcement
-                                </Link>
-                                <Link to="teacherallannouncement" className="dropdown-item">
-                                    All Announcement
-                                </Link>
-
-                            </div>
-                        </div>
 
                         <div className="nav-item dropdown">
                             <Link
@@ -127,13 +53,92 @@ export default function TeacherHeader() {
                                 Change-Password
                             </Link>
                             <div className="dropdown-menu fade-down m-0">
-                                <Link to="changepassword" className="dropdown-item">
+                                <Link to="studentchangepassword" className="dropdown-item">
                                     Change-Password
                                 </Link>
 
 
                             </div>
                         </div>
+
+                        <div className="nav-item dropdown">
+                            <Link
+                                to=""
+                                className="nav-link dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                            >
+                                View-Classes-Joined
+                            </Link>
+                            <div className="dropdown-menu fade-down m-0">
+                                <Link to="viewjoinedclasses" className="dropdown-item">
+                                    View-Classes-Joined
+                                </Link>
+
+
+                            </div>
+                        </div>
+
+                        <div className="nav-item dropdown">
+                            <Link
+                                to=""
+                                className="nav-link dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                            >
+                                Show-Materials
+                            </Link>
+                            <div className="dropdown-menu fade-down m-0">
+                                <Link to="showmaterial" className="dropdown-item">
+                                    Show-Materials
+                                </Link>
+
+
+                            </div>
+                        </div>
+
+                        <div className="nav-item dropdown">
+                            <Link
+                                to=""
+                                className="nav-link dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                            >
+                                Show-Assignments
+                            </Link>
+                            <div className="dropdown-menu fade-down m-0">
+                                <Link to="showassignments" className="dropdown-item">
+                                    Show-Assignments
+                                </Link>
+
+
+                            </div>
+                        </div>
+
+                        <div className="nav-item dropdown">
+                            <Link
+                                to=""
+                                className="nav-link dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                            >
+                                Show-Announcements
+                            </Link>
+                            <div className="dropdown-menu fade-down m-0">
+                                <Link to="showannouncements" className="dropdown-item">
+                                    Show-Announcements
+                                </Link>
+
+
+                            </div>
+                        </div>
+
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
 
 
 
@@ -158,7 +163,7 @@ export default function TeacherHeader() {
                 </div>
             </nav>
             {/* Navbar End */}
-
+            
         </>
     )
 }

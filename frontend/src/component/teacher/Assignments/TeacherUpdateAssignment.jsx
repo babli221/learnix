@@ -1,14 +1,14 @@
-export default function TeacherAddAssignment() {
+export default function TeacherUpdateAssignment() {
     return (
         <>
-            {/* Add Assignment */}
+            {/* Update Assignment */}
             <div className="container-xxl py-5">
                 <div className="container">
                     <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
                         <h6 className="section-title bg-white text-center text-primary px-3">
-                            Add New Assignment
+                            Update Assignment
                         </h6>
-                        <h1 className="mb-5">Enter Assignment Details</h1>
+                        <h1 className="mb-5">Enter Details to Update Assignment</h1>
                     </div>
 
                     <div className="row g-4 justify-content-center d-flex">
@@ -16,21 +16,21 @@ export default function TeacherAddAssignment() {
                             <form>
                                 <div className="row g-3">
 
-                                    {/* Assignment Title */}
+                                    {/* Title */}
                                     <div className="col-12">
                                         <div className="form-floating">
                                             <input
                                                 type="text"
                                                 className="form-control"
                                                 id="title"
-                                                placeholder="Assignment Title"
+                                                placeholder="Enter Assignment Title"
                                                 required
                                             />
-                                            <label htmlFor="title">Assignment Title</label>
+                                            <label htmlFor="title">Title</label>
                                         </div>
                                     </div>
 
-                                    {/* Select Class */}
+                                    {/* Class */}
                                     <div className="col-md-6">
                                         <div className="form-floating">
                                             <select id="class" className="form-select" required>
@@ -43,7 +43,7 @@ export default function TeacherAddAssignment() {
                                         </div>
                                     </div>
 
-                                    {/* Select Teacher */}
+                                    {/* Teacher */}
                                     <div className="col-md-6">
                                         <div className="form-floating">
                                             <select id="teacher" className="form-select" required>
@@ -65,7 +65,6 @@ export default function TeacherAddAssignment() {
                                                 id="description"
                                                 placeholder="Enter Description"
                                                 style={{ height: '100px' }}
-                                                required
                                             ></textarea>
                                             <label htmlFor="description">Description</label>
                                         </div>
@@ -78,7 +77,7 @@ export default function TeacherAddAssignment() {
                                                 type="number"
                                                 className="form-control"
                                                 id="marks"
-                                                placeholder="Total Marks"
+                                                placeholder="Enter Marks"
                                                 required
                                             />
                                             <label htmlFor="marks">Marks</label>
@@ -92,29 +91,40 @@ export default function TeacherAddAssignment() {
                                                 type="date"
                                                 className="form-control"
                                                 id="dueDate"
-                                                placeholder="Due Date"
                                                 required
                                             />
                                             <label htmlFor="dueDate">Due Date</label>
                                         </div>
                                     </div>
 
-                                    {/* Upload File */}
-                                    <div className="col-12">
-                                        <label className="form-label fw-bold">Upload Assignment File</label>
+                                    {/* Password (if needed) */}
+                                    <div className="col-md-6">
+                                        <div className="form-floating">
+                                            <input
+                                                type="password"
+                                                className="form-control"
+                                                id="password"
+                                                placeholder="Enter Password"
+                                            />
+                                            <label htmlFor="password">Password (optional)</label>
+                                        </div>
+                                    </div>
+
+                                    {/* File Upload */}
+                                    <div className="col-md-6">
+                                        <label className="form-label fw-bold">Upload New File</label>
                                         <input
                                             type="file"
                                             className="form-control"
                                             id="file"
                                             accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png"
-                                            required
                                         />
                                     </div>
 
                                     {/* Submit Button */}
                                     <div className="col-12">
                                         <button className="btn btn-primary w-100 py-3" type="submit">
-                                            Add New Assignment
+                                            Update Assignment
                                         </button>
                                     </div>
 
@@ -124,7 +134,7 @@ export default function TeacherAddAssignment() {
                     </div>
                 </div>
             </div>
-            {/* Add Assignment */}
+            {/* Update Assignment */}
         </>
     );
 }
