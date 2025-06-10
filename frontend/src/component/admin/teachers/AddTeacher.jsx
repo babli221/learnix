@@ -1,6 +1,7 @@
 import { useState } from "react"
 import ApiServices from "../../layout/ApiServices"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 export default function AddTeacher() {
 
@@ -13,6 +14,9 @@ export default function AddTeacher() {
     const [address, setAddress] = useState("")
     const [qualification, setQualification] = useState("")
     const [profilePic, setProfilePic] = useState("")
+
+    var nav = useNavigate()
+    
 
     function handleForm(e) {
         e.preventDefault()
@@ -42,7 +46,7 @@ export default function AddTeacher() {
                     setAddress("")
                     setQualification("")
 
-
+                    nav("/admin/allteacher")
 
                 }else{
                     toast.error(res.data.message)

@@ -11,7 +11,7 @@ export default function Header() {
                 >
                     <h2 className="m-0 text-primary">
                         <i className="fa fa-book me-3" />
-                        eLEARNING
+                        Learnix
                     </h2>
                 </a>
                 <button

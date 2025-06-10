@@ -1,6 +1,51 @@
 import { Link } from "react-router-dom";
+import ApiServices from "../../layout/ApiServices";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 export default function TeacherAllAssignment() {
+    const [allAssignments, setAllAssignments] = useState([]);
+
+    function fetchAssignments() {
+        ApiServices.AllAssignment()
+            .then((res) => {
+                if (res.data.success) {
+                    setAllAssignments(res?.data?.data); 
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong");
+                console.log(err);
+            });
+    }
+
+    useEffect(() => {
+        fetchAssignments();
+    }, []);
+
+    function deleteAssignment(id) {
+        let data = {
+            _id: id,
+            status: "false",
+        };
+
+        ApiServices.TeacherDeleteAssignment(data)
+            .then((res) => {
+                if (res.data.success) {
+                    toast.success("Assignment Deleted Successfully!");
+                    fetchAssignments();
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong");
+                console.log(err);
+            });
+    }
+
     return (
         <>
             <div className="container-xxl py-5">
@@ -29,34 +74,31 @@ export default function TeacherAllAssignment() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Complete your Assignment</td>
-                                        <td>Teacher2</td>
-                                        <td>BCA</td>
-                                        <td>React Assignment</td>
-                                        <td>20</td>
-                                        <td>04-06-2025</td>
-                                        <td>
-                                            <a
-                                                href="/materials/file-1741415873509-62161625-Teacher2.jpg"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                View File
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <Link to="/teacher/teacherupdateassignment" className="btn btn-success">
-                                                <i className="fa-solid fa-pen-to-square" />
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <button className="btn btn-danger">
-                                                <i className="fa-solid fa-trash" />
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    {allAssignments.map((el, index) => (
+                                        <tr key={index}>
+                                            <th scope="row">{index + 1}</th>
+                                            <td>{el?.title}</td>
+                                            <td>{el?.teacherid}</td>
+                                            <td>{el?.classid}</td>
+                                            <td>{el?.description}</td>
+                                            <td>{el?.marks}</td>
+                                            <td>{el?.dueDate}</td>
+                                            <td>{el?.file}</td>
+                                            <td>
+                                                <Link to="/teacher/teacherupdateassignment" className="btn btn-success">
+                                                    <i className="fa-solid fa-pen-to-square" />
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <button
+                                                    className="btn btn-danger"
+                                                    onClick={() => deleteAssignment(el._id)} 
+                                                >
+                                                    <i className="fa-solid fa-trash" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

@@ -1,6 +1,51 @@
 import { Link } from "react-router-dom";
+import ApiServices from "../../layout/ApiServices";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 export default function TeacherAllMaterial() {
+    const [allMaterials, setAllMaterials] = useState([]);
+
+    function fetchMaterials() {
+        ApiServices.AllMaterial()
+            .then((res) => {
+                if (res.data.success) {
+                    setAllMaterials(res?.data?.data);
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong");
+                console.log(err);
+            });
+    }
+
+    useEffect(() => {
+        fetchMaterials();
+    }, []);
+
+    function deleteMaterial(id) {
+        let data = {
+            _id: id,
+            status: "false",
+        };
+
+        ApiServices.TeacherDeleteMaterial(data)
+            .then((res) => {
+                if (res.data.success) {
+                    toast.success("Material Deleted Successfully!");
+                    fetchMaterials();
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong");
+                console.log(err);
+            });
+    }
+
     return (
         <div className="container-xxl py-5">
             <div className="container">
@@ -33,38 +78,31 @@ export default function TeacherAllMaterial() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mr. Khurana</td>
-                                        <td>Material 1</td>
-                                        <td>Unit-1 Notes</td>
-                                        <td>
-                                            <a
-                                                href={`/materials/file-1741415873509-62161625-Teacher2.jpg`}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="btn btn-sm btn-outline-primary"
-                                            >
-                                                View File
-                                            </a>
-                                        </td>
-                                        <td>BCA</td>
-                                        <td>2025-06-03</td>
-                                        <td>
-                                            <span className="badge bg-success">Active</span>
-                                        </td>
-                                        <td>
-                                            <Link to="/teacher/teacherupdatematerial" className="btn btn-sm btn-success">
-                                                <i className="fa-solid fa-pen-to-square" />
-                                            </Link>
-                                        </td>
-                                        <td>
-                                            <button className="btn btn-sm btn-danger">
-                                                <i className="fa-solid fa-trash" />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    {/* Repeat <tr> for more rows dynamically */}
+                                    {allMaterials.map((el, index) => (
+                                        <tr key={index}>
+                                            <th scope="row">{index + 1}</th>
+                                            <td>{el?.teacherid}</td>
+                                            <td>{el?.title}</td>
+                                            <td>{el?.description}</td>
+                                            <td>{el?.file}</td>
+                                            <td>{el?.classid}</td>
+                                            <td>{el?.createdAt}</td>
+                                            <td>{el?.status ? "Active" : "Inactive"}</td>
+                                            <td>
+                                                <Link to="/teacher/teacherupdatematerial" className="btn btn-success">
+                                                    <i className="fa-solid fa-pen-to-square" />
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <button
+                                                    className="btn btn-danger"
+                                                    onClick={() => deleteMaterial(el._id)}
+                                                >
+                                                    <i className="fa-solid fa-trash" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

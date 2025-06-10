@@ -1,6 +1,7 @@
 import { useState } from "react"
 import ApiServices from "../../layout/ApiServices"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 export default function AddStudent(){
 
@@ -8,6 +9,8 @@ export default function AddStudent(){
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    var nav = useNavigate()
 
     function handleForm(e) {
         e.preventDefault()
@@ -26,6 +29,7 @@ export default function AddStudent(){
                         setName("")
                         setEmail("")
                         setPassword("")
+                         nav("/admin/allstudent")
 
             }else{
                 toast.error(res.data.message)

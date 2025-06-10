@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ApiServices from "../../layout/ApiServices"
 import { toast } from "react-toastify"
 
@@ -10,6 +10,32 @@ export default function AddClass() {
     const [teachername, setTeacherName] = useState("")
     const [description, setDescription] = useState("")
     const [classlink, setClassLink] = useState("")
+
+    const [allTeachers, setAllTeachers] = useState([])
+
+    function fetchTeachers(){
+             ApiServices.AllTeacher()
+                .then((res) => {
+                    // console.log(res)
+                    if (res.data.success) {
+                        // toast.success("All Teachers Fetched Successfully")
+                        setAllTeachers(res?.data?.data)
+                        // console.log(res?.data?.data)
+                    }
+                    else {
+                        toast.error(res.data.message)
+                    }
+                })
+                .catch((err) => {
+                    toast.error("Something Went Wrong");
+                    console.log(err)
+                })
+        }
+        //make useEffect and call that function in it.
+    
+        useEffect(() => {
+           fetchTeachers()
+        }, [])
 
     function handleForm(e) {
         e.preventDefault()
@@ -76,7 +102,7 @@ export default function AddClass() {
                                     </div>
                                     
                                     <div className="col-12">
-                                        <div className="form-floating">
+                                        {/* <div className="form-floating">
                                             <input
                                                 type="text"
                                                 className="form-control"
@@ -88,7 +114,7 @@ export default function AddClass() {
                                                 }}
                                             />
                                             <label htmlFor="text">TeacherID</label>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="col-12">
                                         <div className="form-floating">
@@ -120,17 +146,24 @@ export default function AddClass() {
                                             <label htmlFor="text">ClassLink</label>
                                         </div>
                                     </div>
-                                    {/* <div className="col-12">
+                                    <div className="col-12">
                                         <div className="form-floating">
-                                            <select name="" id="" className="form-select">
-                                                <option value="">Mr Khurana</option>
-                                                <option value="">Mr Khan</option>
-                                                <option value="">John</option>
-                                                <option value="">Mohinder</option>
+                                            <select name="" id="" className="form-select"  onChange={(e) => {
+                                                    setTeacherName(e.target.value)
+                                                }}>
+                                                {allTeachers.map((el,index)=>{
+                                                    return(
+                                                        <>
+                                                <option value={el._id}>{el.name}</option>
+                                                        
+                                                        </>
+                                                    )
+                                                })}
+                                                
                                             </select>
                                             <label htmlFor="text">Teacher</label>
                                         </div>
-                                    </div> */}
+                                    </div>
 
 
                                     <div className="col-12">

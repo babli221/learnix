@@ -48,7 +48,7 @@ import AdminMasterLayout from './component/layout/admin/AdminMasterLayout'
 import TeacherMasterLayout from './component/layout/teacher/TeacherMasterLayout'
 import Login from './component/students/auth/Login'
 import ShowClassJoined from './component/teacher/showclassjoined/ShowClassJoined'
-import TeacherProfileUpdate from './component/teacher/profile update/TeacherProfileUpdate'
+
 import TeacherAddMaterial from './component/teacher/Materials/TeacherAddMaterial'
 import TeacherAllMaterial from './component/teacher/Materials/TeacherAllMaterial'
 import TeacherUpdateMaterial from './component/teacher/Materials/TeacherUpdateMaterial'
@@ -68,6 +68,7 @@ import ShowAnnouncements from './component/students/ShowAnnouncements/ShowAnnoun
 import SingleClass from './component/teacher/showclassjoined/SingleClass'
 import { ToastContainer } from 'react-toastify'
 import AdminChangePassword from './component/admin/ChangePassword/AdminChangePassword'
+
 
 
 
@@ -93,7 +94,7 @@ function App() {
             <Route path='/admin' element={<Dashboard></Dashboard>}></Route>
             <Route path='/admin/addteacher' element={<AddTeacher></AddTeacher>}></Route>
             <Route path='/admin/allteacher' element={<AllTeacher></AllTeacher>}></Route>
-            <Route path='/admin/updateteacher' element={<UpdateTeacher></UpdateTeacher>}></Route>
+            <Route path='/admin/updateteacher/:id' element={<UpdateTeacher></UpdateTeacher>}></Route>
 
             <Route path='/admin/addclass' element={<AddClass></AddClass>}></Route>
             <Route path='/admin/allclass' element={<AllClass></AllClass>}></Route>
@@ -120,12 +121,13 @@ function App() {
             <Route path='/admin/updatecomment' element={<UpdateComment></UpdateComment>}></Route>
 
             <Route path='/admin/adminchangepassword' element={<AdminChangePassword></AdminChangePassword>}></Route>
+            
           </Route>
 
           <Route path="/teacher" element={<TeacherMasterLayout></TeacherMasterLayout>}>
           
             <Route path='/teacher/' element={<ShowClassJoined></ShowClassJoined>}></Route>
-            <Route path='/teacher/teacherprofileupdate' element={<TeacherProfileUpdate></TeacherProfileUpdate>}></Route>
+            
 
             <Route path='/teacher/teacheraddmaterial' element={<TeacherAddMaterial></TeacherAddMaterial>}></Route>
             <Route path='/teacher/teacherallmaterial' element={<TeacherAllMaterial></TeacherAllMaterial>}></Route>

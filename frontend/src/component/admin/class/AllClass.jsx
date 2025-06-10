@@ -1,6 +1,65 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import ApiServices from "../../layout/ApiServices";
+import { toast } from "react-toastify";
 
 export default function AllClass() {
+
+    const [allClasses, setAllClasses] = useState([])
+    
+        // --------------------- All API ---------------------
+    
+        function fetchClasses(){
+             ApiServices.AllClass()
+                .then((res) => {
+                    // console.log(res)
+                    if (res.data.success) {
+                        // toast.success("All Teachers Fetched Successfully")
+                        setAllClasses(res?.data?.data)
+                        // console.log(res?.data?.data)
+                    }
+                    else {
+                        toast.error(res.data.message)
+                    }
+                })
+                .catch((err) => {
+                    toast.error("Something Went Wrong");
+                    console.log(err)
+                })
+        }
+        //make useEffect and call that function in it.
+    
+        useEffect(() => {
+           fetchClasses()
+        }, [])
+    
+        // --------------------- Delete API ---------------------
+    
+        function deleteClass(id){
+            // console.log(id)
+    
+            let data ={
+                _id : id,
+                status : "false" 
+            }
+    
+            ApiServices.DeleteClass(data)
+            .then((res) => {
+                   
+                    if (res.data.success) {
+                        toast.success("Class Deleted Successfully!")
+                        fetchClasses()
+                        
+                    }
+                    else {
+                        toast.error(res.data.message)
+                    }
+                })
+                .catch((err) => {
+                    toast.error("Something Went Wrong");
+                    console.log(err)
+                })
+        }
     return (
         <>
         {/* All Class */}
@@ -31,29 +90,36 @@ export default function AllClass() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>CyberClass</td>
+                                    {allClasses.map((el, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <th scope="row">{index + 1}</th>
+                                                <td>{el?.name}</td>
+                                                <td>{el?.description}</td>
+                                                <td>{el?.teacherId?.name}</td>
+                                                <td>{el?.classLink}</td>
+                                                
+                                                <td>{el?.status ? "Active" : "Inactive"}</td>
+                                                <td>{el?.createdAt}</td>
+                                                <td>
+                                                    <Link to="/admin/updateclass" className="btn btn-success" >
+                                                        <i className="fa-solid fa-pen-to-square" />
+                                                    </Link>
 
-                                        <td>A cyberclass for all students</td>
-                                        <td>Oman</td>
-                                        <td>oman@gmail.com</td>
-                                        <td>true</td>
-                                        <td>2025-02-25T14:58:09.465Z</td>
+                                                </td>
+                                                <td>
+                                                    <button className="btn btn-danger" onClick={()=>{
+                                                        deleteClass(el._id)
+                                                    }}> 
+                                                        <i className="fa-solid fa-trash" />
 
-                                        <td>
-                                            <Link to="/admin/updateclass" className="btn btn-success" >
-                                                <i className="fa-solid fa-pen-to-square" />
-                                            </Link>
+                                                    </button>
+                                                </td>
 
-                                        </td>
-                                        <td>
-                                            <Link to="" className="btn btn-danger" >
-                                                <i className="fa-solid fa-trash" />
-                                            </Link>
-                                        </td>
+                                            </tr>
+                                        )
+                                    })}
 
-                                    </tr>
 
                                 </tbody>
                             </table>

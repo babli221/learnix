@@ -35,41 +35,17 @@ export default function TeacherHeader() {
                           
                         </div>
 
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Profile Update
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="teacherprofileupdate" className="dropdown-item">
-                                    Profile-Update
-                                </Link>
-
-
-                            </div>
-                        </div>
+                        <Link to="changepassword" className="nav-item nav-link active">
+                            Change-Password
+                        </Link>
 
                         
 
-                        <div className="nav-item dropdown">
-                            <Link
-                                to=""
-                                className="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                            >
-                                Change-Password
-                            </Link>
-                            <div className="dropdown-menu fade-down m-0">
-                                <Link to="changepassword" className="dropdown-item">
-                                    Change-Password
-                                </Link>
+                        
 
+                        
 
-                            </div>
-                        </div>
+                        
 
 
 
