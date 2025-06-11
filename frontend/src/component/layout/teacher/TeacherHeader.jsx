@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function TeacherHeader() {
+
+    const nav = useNavigate()
+
+    function logout() {
+        sessionStorage.clear()
+        nav("/")
+    }
+
+
     return (
         <>
             {/* Navbar Start */}
@@ -28,45 +37,25 @@ export default function TeacherHeader() {
 
 
                         <div className="nav-item dropdown">
-                           
-                             <Link to="" className="nav-item nav-link active">
-                            Home
-                        </Link>
-                          
+
+                            <Link to="" className="nav-item nav-link active">
+                                Home
+                            </Link>
+
                         </div>
 
                         <Link to="changepassword" className="nav-item nav-link active">
                             Change-Password
                         </Link>
 
-                        
-
-                        
-
-                        
-
-                        
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
                     </div>
-                    <Link to="" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+                    <button className="btn btn-primary py-4 px-lg-5 d-none d-lg-block" onClick={logout}>
                         Logout
                         <i className="fa fa-arrow-right ms-3" />
-                    </Link>
+                    </button>
                 </div>
             </nav>
             {/* Navbar End */}

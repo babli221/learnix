@@ -142,7 +142,7 @@ function App() {
             <Route path='/teacher/teacherupdateannouncement' element={<TeacherUpdateAnnouncement></TeacherUpdateAnnouncement>}></Route>
 
             <Route path='/teacher/changepassword' element={<ChangePassword></ChangePassword>}></Route>
-            <Route path='/teacher/singleclass' element={<SingleClass></SingleClass>}></Route>
+            <Route path='/teacher/singleclass/:id/:tId' element={<SingleClass></SingleClass>}></Route>
             
           </Route>
 

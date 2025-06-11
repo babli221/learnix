@@ -1,6 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import ApiServices from "../../layout/ApiServices";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function SingleClass() {
+
+    const params = useParams()
+
+    console.log(params.id)
+
+    const [teacherMaterials, setTeacherMaterials] = useState([])
+
+    sessionStorage.setItem("classId", params.id)
+
+    console.log(params.tId)
+    sessionStorage.setItem("teacherId", params.tId)
+
+    // ------------------------ Get All Meterials
+
+    useEffect(() => {
+        ApiServices.TeacherAllMaterial()
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.success) {
+                    toast.success(res.data.message)
+
+                    setTeacherMaterials(res?.data?.data)
+
+                    console.log(res.data.data)
+
+
+
+
+                } else {
+                    toast.error(res.data.message)
+                }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong")
+                console.log(err)
+            })
+    }, [])
+
     return (
         <>
             <div className="container-xxl py-5">
@@ -24,8 +65,27 @@ export default function SingleClass() {
                             </nav>
                             <div className="tab-content" id="nav-tabContent">
                                 <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+
+                                    <div className="row mt-5 ">
+                                        <div className="col-2">
+                                            <button className="btn">
+                                                <Link to={"/teacher/teacheraddmaterial"}>
+
+                                                    Add Material
+                                                </Link>
+
+                                            </button>
+                                        </div>
+                                    </div>
+
                                     <div className="row g-4 justify-content-center mt-5">
-                                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+
+
+
+                                        {teacherMaterials
+                                            .filter(el => el?.teacherId?._id === sessionStorage.getItem("teacherId"))
+                                            .map((el, index) => (
+                                                  <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                             <div className="course-item bg-light">
                                                 <div className="position-relative overflow-hidden">
                                                     <img className="img-fluid" src="img/course-1.jpg" alt="" />
@@ -50,102 +110,81 @@ export default function SingleClass() {
 
 
                                                     <h5 className="mb-4">
-                                                        Web Design  Material
+                                                        {el?.title}
                                                     </h5>
                                                 </div>
                                                 <div className="d-flex border-top">
 
                                                     <small className="flex-fill text-center border-end py-2">
-                                                        <i className="fa fa-clock text-primary me-2" />
-                                                        05-June-2025
+                                                        {el?.description}
                                                     </small>
 
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                            <div className="course-item bg-light">
-                                                <div className="position-relative overflow-hidden">
-                                                    <img className="img-fluid" src="img/course-1.jpg" alt="" />
-                                                    <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                                        <a
-                                                            href="#"
-                                                            className="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                                                            style={{ borderRadius: "30px 0 0 30px" }}
-                                                        >
-                                                            Read More
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            className="flex-shrink-0 btn btn-sm btn-primary px-3"
-                                                            style={{ borderRadius: "0 30px 30px 0" }}
-                                                        >
-                                                            Join Now
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div className="text-center p-4 pb-0">
+                                            ))}
 
 
-                                                    <h5 className="mb-4">
-                                                        Web Design  Material
-                                                    </h5>
-                                                </div>
-                                                <div className="d-flex border-top">
-
-                                                    <small className="flex-fill text-center border-end py-2">
-                                                        <i className="fa fa-clock text-primary me-2" />
-                                                        05-June-2025
-                                                    </small>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                            <div className="course-item bg-light">
-                                                <div className="position-relative overflow-hidden">
-                                                    <img className="img-fluid" src="img/course-1.jpg" alt="" />
-                                                    <div className="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                                        <a
-                                                            href="#"
-                                                            className="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                                                            style={{ borderRadius: "30px 0 0 30px" }}
-                                                        >
-                                                            Read More
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            className="flex-shrink-0 btn btn-sm btn-primary px-3"
-                                                            style={{ borderRadius: "0 30px 30px 0" }}
-                                                        >
-                                                            Join Now
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div className="text-center p-4 pb-0">
+                                    
 
 
-                                                    <h5 className="mb-4">
-                                                        Web Design  Material
-                                                    </h5>
-                                                </div>
-                                                <div className="d-flex border-top">
 
-                                                    <small className="flex-fill text-center border-end py-2">
-                                                        <i className="fa fa-clock text-primary me-2" />
-                                                        05-June-2025
-                                                    </small>
 
-                                                </div>
-                                            </div>
-                                        </div>
+
 
                                     </div>
                                 </div>
-                                <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">Assigemnnt section</div>
-                                <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">Anoncement dectopmd</div>
+                                <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+
+
+                                    <div className="row mt-5 ">
+                                        <div className="col-2">
+                                            <button className="btn">
+                                                <Link to={"/teacher/teacheraddassignment"}>
+
+                                                    Add Assignment
+                                                </Link>
+
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+                                </div>
+                                <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+
+                                    <div className="row mt-5 ">
+                                        <div className="col-2">
+                                            <button className="btn">
+                                                <Link to={"/teacher/teacheraddannouncement"}>
+
+                                                    Add Announcement
+                                                </Link>
+
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                </div>
                                 <div className="tab-pane fade" id="nav-students" role="tabpanel" aria-labelledby="nav-students-tab" tabindex="0">
 
                                     <div className="container-xxl py-5">

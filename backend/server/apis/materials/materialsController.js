@@ -1,6 +1,9 @@
 const Material = require("./materialsModel");
 
 const add = async (req, res) => {
+
+  console.log(req.body)
+
   let validation = "";
   if (!req.body.teacherId) {
     validation += "teacherId is required";
@@ -16,6 +19,9 @@ const add = async (req, res) => {
   if (!req.body.description) {
     validation += " description is required";
   }
+  if (!req.file) {
+    validation += " Material File is required";
+  }
  
 
   if (!!validation) {
@@ -24,7 +30,10 @@ const add = async (req, res) => {
       success: false,
       message: validation,
     });
-  } else {
+  } 
+  
+  
+  else {
     let total = await Material.countDocuments();
     let newMaterial = new Material();
     newMaterial.autoId = total + 1;
@@ -34,6 +43,7 @@ const add = async (req, res) => {
     newMaterial.description = req.body.description;
     
     newMaterial.file = "materials/" + req.file.filename;
+
     newMaterial
       .save()
       .then((savedMaterial) => {

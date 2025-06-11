@@ -5,52 +5,60 @@ import { useNavigate } from "react-router-dom"
 
 export default function TeacherAddMaterial() {
     //Make State
-    const [teacherid, setTeacherId] = useState("")
-    const [classid, setClassId] = useState("")
+
     const [title, setTitle] = useState("")
-    const [file, setFile] = useState("")
+    const [file, setFile] = useState(null)
     const [description, setDescription] = useState("")
 
     var nav = useNavigate()
-    
+
 
     function handleForm(e) {
         e.preventDefault()
 
-        // console.log(teacherid, classid, title, file, description)
+        console.log(file)
 
-        let data = {
-            teacherid : teacherid,
-            classid : classid,
-            title : title,
-            file : file,
-            description : description
+        // let data = {
+        //     teacherId: sessionStorage.getItem("teacherId"),
+        //     classId: sessionStorage.getItem("classId"),
+        //     title: title,
+        //     file: file,
+        //     description: description
 
-        }
-        ApiServices.TeacherAddMaterial(data)
-                    .then((res) => {
-                        console.log(res.data)
-                        if(res.data.success){
-                            toast.success(res.data.message) 
-        
-                            setTeacherId("")
-                            setClassId("")
-                            setTitle("")
-                            setFile("")
-                            setDescription("")
-                            
-        
-                            nav("/teacher/teacheraddmaterial")
-        
-                        }else{
-                            toast.error(res.data.message)
-                        }
-                    })
-                    .catch((err) => {
-                        toast.error("Something Went Wrong")
-                        console.log(err)
-                    })
-            }
+        // }
+
+        const formData = new FormData();
+        formData.append("teacherId", sessionStorage.getItem("teacherId"));
+        formData.append("classId", sessionStorage.getItem("classId"));
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("file", file); // ✅ Correct way to send file
+
+
+        ApiServices.TeacherAddMaterial(formData)
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.success) {
+                    toast.success(res.data.message)
+
+
+
+                    setTitle("")
+
+                    setDescription("")
+
+
+                    nav("/teacher/teacheraddmaterial")
+
+                } else {
+                    toast.error(res.data.message)
+                }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong")
+                console.log(err)
+            })
+    }
 
     return (
         <>
@@ -68,40 +76,7 @@ export default function TeacherAddMaterial() {
                             <form onSubmit={handleForm}>
                                 <div className="row g-3">
 
-                                    {/* Select Teacher */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="teacher" className="form-select" required
-                                            value={teacherid}
-                                                onChange={(e) => {
-                                                    setName(e.target.value)
-                                                }}>
-                                                <option value="">-- Select Teacher --</option>
-                                                <option value="khurana">Mr. Khurana</option>
-                                                <option value="khan">Mr. Khan</option>
-                                                <option value="john">John</option>
-                                                <option value="mohinder">Mohinder</option>
-                                            </select>
-                                            <label htmlFor="teacher">Teacher</label>
-                                        </div>
-                                    </div>
 
-                                    {/* Select Class */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="class" className="form-select" required
-                                            value={classid}
-                                                onChange={(e) => {
-                                                    setName(e.target.value)
-                                                }}>
-                                                <option value="">-- Select Class --</option>
-                                                <option value="react">React</option>
-                                                <option value="javascript">JavaScript</option>
-                                                <option value="java">Java</option>
-                                            </select>
-                                            <label htmlFor="class">Class</label>
-                                        </div>
-                                    </div>
 
                                     {/* Material Title */}
                                     <div className="col-12">
@@ -114,7 +89,7 @@ export default function TeacherAddMaterial() {
                                                 required
                                                 value={title}
                                                 onChange={(e) => {
-                                                    setName(e.target.value)
+                                                    setTitle(e.target.value)
                                                 }}
                                             />
                                             <label htmlFor="title">Material Title</label>
@@ -130,7 +105,7 @@ export default function TeacherAddMaterial() {
                                                 placeholder="Enter Description"
                                                 value={description}
                                                 onChange={(e) => {
-                                                    setName(e.target.value)
+                                                    setDescription(e.target.value)
                                                 }}
                                                 style={{ height: '100px' }}
                                             ></textarea>
@@ -145,11 +120,12 @@ export default function TeacherAddMaterial() {
                                             type="file"
                                             className="form-control"
                                             id="file"
-                                            accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png"
-                                            required 
+
+                                            required
+
                                             onChange={(e) => {
-                                                    file(e.target.files[0])
-                                                }}
+                                                setFile(e.target.files[0])
+                                            }}
                                         />
                                     </div>
 

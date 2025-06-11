@@ -45,7 +45,7 @@ export default function ChangePassword() {
 
                     <div className="row g-4 justify-content-center">
                         <div className="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.3s">
-                            <form>
+                            <form onSubmit={updatePass}>
                                 <div className="row g-3">
                                     
                                     {/* Current Password */}

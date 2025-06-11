@@ -31,7 +31,7 @@ export default function AllClass() {
     
         useEffect(() => {
            fetchClasses()
-        }, [])
+        }, [])                          
     
         // --------------------- Delete API ---------------------
     
