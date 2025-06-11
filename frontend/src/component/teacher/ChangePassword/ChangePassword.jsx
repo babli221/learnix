@@ -1,4 +1,36 @@
+import { useState } from "react"
+import ApiServices from "../../layout/ApiServices"
+import { toast } from "react-toastify"
+
 export default function ChangePassword() {
+    const [currentPassword, setCurrentPassword] = useState("")
+        const [newPassword, setNewPassword] = useState("")
+        
+    
+        function updatePass(e){
+            e.preventDefault()
+    
+            let data = {
+                _id : sessionStorage.getItem("id"),
+                currentPassword : currentPassword,
+                newPassword : newPassword
+            }
+    
+            ApiServices.TeacherChangePassword(data)
+             .then((res) => {
+                    if (res.data.success) {
+                        toast.success(res.data.message)
+                        
+                    }
+                    else {
+                        toast.error(res.data.message)
+                    }
+                })
+                .catch((err) => {
+                    toast.error("Something went wrong!")
+                    console.log(err)
+                })
+        }
     return (
         <>
             {/* Change Password Section */}
@@ -25,6 +57,10 @@ export default function ChangePassword() {
                                                 id="currentPassword"
                                                 placeholder="Current Password"
                                                 required
+                                                value={currentPassword}
+                                                onChange={(e) => {
+                                                    setCurrentPassword(e.target.value)
+                                                }}
                                             />
                                             <label htmlFor="currentPassword">Current Password</label>
                                         </div>
@@ -39,24 +75,16 @@ export default function ChangePassword() {
                                                 id="newPassword"
                                                 placeholder="New Password"
                                                 required
+                                                value={newPassword}
+                                                onChange={(e) => {
+                                                    setNewPassword(e.target.value)
+                                                }}
                                             />
                                             <label htmlFor="newPassword">New Password</label>
                                         </div>
                                     </div>
 
-                                    {/* Confirm New Password */}
-                                    <div className="col-12">
-                                        <div className="form-floating">
-                                            <input
-                                                type="password"
-                                                className="form-control"
-                                                id="confirmNewPassword"
-                                                placeholder="Confirm New Password"
-                                                required
-                                            />
-                                            <label htmlFor="confirmNewPassword">Confirm New Password</label>
-                                        </div>
-                                    </div>
+                                   
 
                                     {/* Submit Button */}
                                     <div className="col-12">

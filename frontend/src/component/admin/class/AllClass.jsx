@@ -102,7 +102,7 @@ export default function AllClass() {
                                                 <td>{el?.status ? "Active" : "Inactive"}</td>
                                                 <td>{el?.createdAt}</td>
                                                 <td>
-                                                    <Link to="/admin/updateclass" className="btn btn-success" >
+                                                    <Link to={"/admin/updateclass/"+ el._id} className="btn btn-success" >
                                                         <i className="fa-solid fa-pen-to-square" />
                                                     </Link>
 

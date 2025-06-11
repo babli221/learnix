@@ -32,6 +32,7 @@ export default function Login() {
                 sessionStorage.setItem("email",res.data.data.email)
                 sessionStorage.setItem("userType",res.data.data.userType)
                 sessionStorage.setItem("token",res.data.token)
+                sessionStorage.setItem("id",res.data.data._id)
 
                 if(res.data.data.userType == "1"){
 

@@ -1,66 +1,59 @@
-import { useState } from "react"
-import ApiServices from "../../layout/ApiServices"
-import { toast } from "react-toastify"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import ApiServices from "../../layout/ApiServices";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function AddTeacher() {
+    const navigate = useNavigate();
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        qualification: "",
+        contact: "",
+        address: ""
+    });
 
-    // Make States
+    const [profilePic, setProfilePic] = useState(null);
 
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [contact, setContact] = useState("")
-    const [address, setAddress] = useState("")
-    const [qualification, setQualification] = useState("")
-    const [profilePic, setProfilePic] = useState("")
+    const handleChange = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value });
+    };
 
-    var nav = useNavigate()
-    
+    const handleFileChange = (e) => {
+        setProfilePic(e.target.files[0]);
+    };
 
-    function handleForm(e) {
-        e.preventDefault()
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-        // console.log(name, email, password, contact, address, qualification, profilePic)
-
-        let data = {
-            name: name,
-            email: email,
-            contact: contact,
-            address: address,
-            qualification: qualification,
-            password: password,
-            profile : profilePic
+        const formData = new FormData();
+        formData.append("name", data.name);
+        formData.append("email", data.email);
+        formData.append("password", data.password);
+        formData.append("qualification", data.qualification);
+        formData.append("contact", data.contact);
+        formData.append("address", data.address);
+        if (profilePic) {
+            formData.append("profile", profilePic);
         }
 
-        ApiServices.AddTeacher(data)
+        ApiServices.AddTeacher(formData)
             .then((res) => {
-                console.log(res.data)
-                if(res.data.success){
-                    toast.success(res.data.message) 
-
-                    setName("")
-                    setEmail("")
-                    setPassword("")
-                    setContact("")
-                    setAddress("")
-                    setQualification("")
-
-                    nav("/admin/allteacher")
-
-                }else{
-                    toast.error(res.data.message)
+                if (res.data.success) {
+                    toast.success("Teacher Added");
+                    navigate("/admin/allteacher");
+                } else {
+                    toast.error(res.data.message);
                 }
             })
-            .catch((err) => {
-                toast.error("Something Went Wrong")
-                console.log(err)
-            })
-    }
+            .catch(() => {
+                toast.error("Something went wrong");
+            });
+    };
 
     return (
         <>
-            {/* Add Teacher */}
             <div className="container-xxl py-5">
                 <div className="container">
                     <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -70,39 +63,37 @@ export default function AddTeacher() {
                         <h1 className="mb-5">Enter Details Of New Teacher</h1>
                     </div>
                     <div className="row g-4 justify-content-center d-flex">
-
-                        <div className="col-lg-4 col-md-12  wow fadeInUp" data-wow-delay="0.5s">
-                            <form onSubmit={handleForm}>
-                                <div className="row g-3 ">
+                        <div className="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                            <form onSubmit={handleSubmit} encType="multipart/form-data">
+                                <div className="row g-3">
 
                                     <div className="col-12">
                                         <div className="form-floating">
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                id="text"
-                                                placeholder="Name Of Teacher"
-
-                                                value={name}
-                                                onChange={(e) => {
-                                                    setName(e.target.value)
-                                                }}
+                                                id="name"
+                                                placeholder="Name"
+                                                name="name"
+                                                value={data.name}
+                                                onChange={handleChange}
+                                                required
                                             />
-                                            <label htmlFor="email">Name</label>
+                                            <label htmlFor="name">Name</label>
                                         </div>
                                     </div>
+
                                     <div className="col-12">
                                         <div className="form-floating">
                                             <input
                                                 type="email"
                                                 className="form-control"
                                                 id="email"
-                                                placeholder="Your Email"
-
-                                                value={email}
-                                                onChange={(e) => {
-                                                    setEmail(e.target.value)
-                                                }}
+                                                placeholder="Email"
+                                                name="email"
+                                                value={data.email}
+                                                onChange={handleChange}
+                                                required
                                             />
                                             <label htmlFor="email">Email</label>
                                         </div>
@@ -113,16 +104,14 @@ export default function AddTeacher() {
                                             <input
                                                 type="password"
                                                 className="form-control"
-                                                id="Password"
+                                                id="password"
                                                 placeholder="Password"
-
-
-                                                value={password}
-                                                onChange={(e) => {
-                                                    setPassword(e.target.value)
-                                                }}
+                                                name="password"
+                                                value={data.password}
+                                                onChange={handleChange}
+                                                required
                                             />
-                                            <label htmlFor="Password">Password</label>
+                                            <label htmlFor="password">Password</label>
                                         </div>
                                     </div>
 
@@ -131,52 +120,46 @@ export default function AddTeacher() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                id="text"
-                                                placeholder="Contact"
-
-
-                                                value={contact}
-                                                onChange={(e) => {
-                                                    setContact(e.target.value)
-                                                }}
-                                            />
-                                            <label htmlFor="email">Contact</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-12">
-                                        <div className="form-floating">
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                id="text"
-                                                placeholder="Address"
-
-
-                                                value={address}
-                                                onChange={(e) => {
-                                                    setAddress(e.target.value)
-                                                }}
-                                            />
-                                            <label htmlFor="email">Address</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-12">
-                                        <div className="form-floating">
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                id="text"
+                                                id="qualification"
                                                 placeholder="Qualification"
-
-
-                                                value={qualification}
-                                                onChange={(e) => {
-                                                    setQualification(e.target.value)
-                                                }}
+                                                name="qualification"
+                                                value={data.qualification}
+                                                onChange={handleChange}
+                                                required
                                             />
-                                            <label htmlFor="email">Qualification</label>
+                                            <label htmlFor="qualification">Qualification</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-12">
+                                        <div className="form-floating">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="contact"
+                                                placeholder="Contact"
+                                                name="contact"
+                                                value={data.contact}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                            <label htmlFor="contact">Contact</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-12">
+                                        <div className="form-floating">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="address"
+                                                placeholder="Address"
+                                                name="address"
+                                                value={data.address}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                            <label htmlFor="address">Address</label>
                                         </div>
                                     </div>
 
@@ -185,14 +168,11 @@ export default function AddTeacher() {
                                             <input
                                                 type="file"
                                                 className="form-control"
-                                                id="file"
-                                                placeholder="Profile"
-
-                                                onChange={(e) => {
-                                                    setProfilePic(e.target.files[0])
-                                                }}
+                                                id="profile"
+                                                name="profile"
+                                                onChange={handleFileChange}
                                             />
-                                            <label htmlFor="file">Profile</label>
+                                            <label htmlFor="profile">Profile Picture</label>
                                         </div>
                                     </div>
 
@@ -207,7 +187,6 @@ export default function AddTeacher() {
                     </div>
                 </div>
             </div>
-            {/* Add Teacher */}
         </>
-    )
+    );
 }

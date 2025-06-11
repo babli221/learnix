@@ -98,11 +98,11 @@ function App() {
 
             <Route path='/admin/addclass' element={<AddClass></AddClass>}></Route>
             <Route path='/admin/allclass' element={<AllClass></AllClass>}></Route>
-            <Route path='/admin/updateclass' element={<UpdateClass></UpdateClass>}></Route>
+            <Route path='/admin/updateclass/:id' element={<UpdateClass></UpdateClass>}></Route>
 
             <Route path='/admin/addstudent' element={<AddStudent></AddStudent>}></Route>
             <Route path='/admin/allstudent' element={<AllStudent></AllStudent>}></Route>
-            <Route path='/admin/updatestudent' element={<UpdateStudent></UpdateStudent>}></Route>
+            <Route path='/admin/updatestudent/:id' element={<UpdateStudent></UpdateStudent>}></Route>
 
             <Route path='/admin/addmaterial' element={<AddMaterial></AddMaterial>}></Route>
             <Route path='/admin/allmaterial' element={<AllMaterial></AllMaterial>}></Route>

@@ -13,59 +13,61 @@ export default function AddClass() {
 
     const [allTeachers, setAllTeachers] = useState([])
 
-    function fetchTeachers(){
-             ApiServices.AllTeacher()
-                .then((res) => {
-                    // console.log(res)
-                    if (res.data.success) {
-                        // toast.success("All Teachers Fetched Successfully")
-                        setAllTeachers(res?.data?.data)
-                        // console.log(res?.data?.data)
-                    }
-                    else {
-                        toast.error(res.data.message)
-                    }
-                })
-                .catch((err) => {
-                    toast.error("Something Went Wrong");
-                    console.log(err)
-                })
-        }
-        //make useEffect and call that function in it.
-    
-        useEffect(() => {
-           fetchTeachers()
-        }, [])
+    function fetchTeachers() {
+        ApiServices.AllTeacher()
+            .then((res) => {
+                // console.log(res)
+                if (res.data.success) {
+                    // toast.success("All Teachers Fetched Successfully")
+                    setAllTeachers(res?.data?.data)
+                    // console.log(res?.data?.data)
+                }
+                else {
+                    toast.error(res.data.message)
+                }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong");
+                console.log(err)
+            })
+    }
+    //make useEffect and call that function in it.
+
+    useEffect(() => {
+        fetchTeachers()
+    }, [])
 
     function handleForm(e) {
         e.preventDefault()
         //console.log(name, teachername, description, classlink)
         let data = {
-            name : name,
-            description : description,
-            teacherId : teachername,
-            classLink : classlink
+            name: name,
+            description: description,
+            teacherId: teachername,
+            classLink: classlink
         }
 
+        console.log("New Class", data)
+
         ApiServices.AddClass(data)
-        .then((res) => {
-            console.log(res.data)
-            if(res.data.success){
-                toast.success(res.data.message)
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.success) {
+                    toast.success(res.data.message)
 
-                setName("")
-                setTeacherName("")
-                setDescription("")
-                setClassLink("")
+                    setName("")
+                    setTeacherName("")
+                    setDescription("")
+                    setClassLink("")
 
-            }else{
-                toast.error(res.data.message)
-            }
-        })
-        .catch((err) => {
-            toast.error("Something Went Wrong")
-            console.log(err)
-        })
+                } else {
+                    toast.error(res.data.message)
+                }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong")
+                console.log(err)
+            })
     }
     return (
         <>
@@ -100,7 +102,7 @@ export default function AddClass() {
                                             <label htmlFor="text">Name</label>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="col-12">
                                         {/* <div className="form-floating">
                                             <input
@@ -146,24 +148,44 @@ export default function AddClass() {
                                             <label htmlFor="text">ClassLink</label>
                                         </div>
                                     </div>
-                                    <div className="col-12">
+                                    {/* <div className="col-12">
                                         <div className="form-floating">
-                                            <select name="" id="" className="form-select"  onChange={(e) => {
-                                                    setTeacherName(e.target.value)
-                                                }}>
-                                                {allTeachers.map((el,index)=>{
-                                                    return(
-                                                        <>
-                                                <option value={el._id}>{el.name}</option>
+                                            <select name="" id="" className="form-select" onChange={(e) => {
+                                                setTeacherName(e.target.value)
+                                            }}>
+                                                {allTeachers.map((el, index) => {
+                                                    return (
+                                                       
+                                                            <option value={el._id} key={index}>{el.name} </option>
+
                                                         
-                                                        </>
                                                     )
                                                 })}
-                                                
+
                                             </select>
                                             <label htmlFor="text">Teacher</label>
                                         </div>
+                                    </div> */}
+
+                                    <div className="col-12">
+                                        <div className="form-floating">
+                                            <select
+                                                name="teacher"
+                                                id="teacherSelect"
+                                                className="form-select"
+                                                onChange={(e) => setTeacherName(e.target.value)}
+                                            >
+                                                <option value="">-- Select a Teacher --</option>
+                                                {allTeachers.map((el) => (
+                                                    <option key={el._id} value={el._id}>
+                                                        {el.name}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <label htmlFor="teacherSelect">Teacher</label>
+                                        </div>
                                     </div>
+
 
 
                                     <div className="col-12">

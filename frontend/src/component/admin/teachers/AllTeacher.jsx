@@ -4,15 +4,15 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 
 export default function AllTeacher() {
-    
+
 
 
     const [allTeachers, setAllTeachers] = useState([])
 
     // --------------------- All API ---------------------
 
-    function fetchTeachers(){
-         ApiServices.AllTeacher()
+    function fetchTeachers() {
+        ApiServices.AllTeacher()
             .then((res) => {
                 // console.log(res)
                 if (res.data.success) {
@@ -32,26 +32,26 @@ export default function AllTeacher() {
     //make useEffect and call that function in it.
 
     useEffect(() => {
-       fetchTeachers()
+        fetchTeachers()
     }, [])
 
     // --------------------- Delete API ---------------------
 
-    function deleteTeacher(id){
+    function deleteTeacher(id) {
         // console.log(id)
 
-        let data ={
-            _id : id,
-            status : "false" 
+        let data = {
+            _id: id,
+            status: "false"
         }
 
         ApiServices.DeleteTeacher(data)
-        .then((res) => {
-               
+            .then((res) => {
+
                 if (res.data.success) {
                     toast.success("Teacher Deleted Successfully!")
                     fetchTeachers()
-                    
+
                 }
                 else {
                     toast.error(res.data.message)
@@ -82,6 +82,10 @@ export default function AllTeacher() {
                                         <th scope="col">#</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Contact</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Qualification</th>
+                                        <th scope="col">Profile</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Edit</th>
                                         <th scope="col">Delete</th>
@@ -90,36 +94,42 @@ export default function AllTeacher() {
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     {allTeachers.map((el, index) => {
                                         return (
                                             <tr key={index}>
                                                 <th scope="row">{index + 1}</th>
                                                 <td>{el?.name}</td>
-
                                                 <td>{el?.email}</td>
+                                                <td>{el?.contact}</td>
+                                                <td>{el?.address}</td>
+                                                <td>{el?.qualification}</td>
+                                                <td>
+                                                    {el?.file ? (
+                                                        <img
+                                                            src={`http://localhost:5000/uploads/${el.file}`}
+                                                            alt="Profile"
+                                                            style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "5px" }}
+                                                        />
+                                                    ) : (
+                                                        "No Image"
+                                                    )}
+                                                </td>
                                                 <td>{el?.status ? "Active" : "Inactive"}</td>
                                                 <td>
-                                                    <Link to={"/admin/updateteacher/"+ el._id}  className="btn btn-success" >
+                                                    <Link to={`/admin/updateteacher/${el._id}`} className="btn btn-success">
                                                         <i className="fa-solid fa-pen-to-square" />
                                                     </Link>
-
                                                 </td>
                                                 <td>
-                                                    <button className="btn btn-danger" onClick={()=>{
-                                                        deleteTeacher(el._id)
-                                                    }}> 
+                                                    <button className="btn btn-danger" onClick={() => deleteTeacher(el._id)}>
                                                         <i className="fa-solid fa-trash" />
-
                                                     </button>
                                                 </td>
-
                                             </tr>
-                                        )
+                                        );
                                     })}
-
-
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
