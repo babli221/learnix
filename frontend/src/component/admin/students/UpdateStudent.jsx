@@ -9,11 +9,10 @@ export default function UpdateStudent() {
 
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
-  const [gender, setGender] = useState("");
-  const [dob, setDob] = useState("");
   const [address, setAddress] = useState("");
-  const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(""); 
+  const [qualification, setQualification] = useState("");
+
+
 
   useEffect(() => {
     ApiServices.SingleStudent({ _id: params.id })
@@ -21,10 +20,9 @@ export default function UpdateStudent() {
         if (res.data.success) {
           setName(res.data.data.name);
           setContact(res.data.data.contact);
-          setGender(res.data.data.gender);
-          setDob(res.data.data.dob);
           setAddress(res.data.data.address);
-          setPreview(res.data.data.image); 
+          setQualification(res.data.data.qualification);
+
         } else {
           toast.error(res.data.message);
         }
@@ -35,11 +33,7 @@ export default function UpdateStudent() {
       });
   }, [params.id]);
 
-  function handleImageChange(e) {
-    const file = e.target.files[0];
-    setImage(file);
-    setPreview(URL.createObjectURL(file));
-  }
+
 
   function updateStudent(e) {
     e.preventDefault();
@@ -48,10 +42,9 @@ export default function UpdateStudent() {
       _id: params.id,
       name,
       contact,
-      gender,
-      dob,
       address,
-      image, 
+      qualification,
+
     };
 
     ApiServices.UpdateStudent(data)
@@ -109,33 +102,9 @@ export default function UpdateStudent() {
                     </div>
                   </div>
 
-                  <div className="col-12">
-                    <div className="form-floating">
-                      <select
-                        className="form-control"
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)}
-                      >
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                      </select>
-                      <label>Gender</label>
-                    </div>
-                  </div>
 
-                  <div className="col-12">
-                    <div className="form-floating">
-                      <input
-                        type="date"
-                        className="form-control"
-                        placeholder="DOB"
-                        value={dob}
-                        onChange={(e) => setDob(e.target.value)}
-                      />
-                      <label>Date of Birth</label>
-                    </div>
-                  </div>
+
+
 
                   <div className="col-12">
                     <div className="form-floating">
@@ -148,26 +117,19 @@ export default function UpdateStudent() {
                       <label>Address</label>
                     </div>
                   </div>
-
                   <div className="col-12">
-                    <label className="form-label">Choose Image</label>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="form-control"
-                      onChange={handleImageChange}
-                    />
-                    {preview && (
-                      <img
-                        src={preview}
-                        alt="preview"
-                        className="mt-2"
-                        width="100"
-                        height="100"
-                        style={{ objectFit: "cover", borderRadius: "8px" }}
+                    <div className="form-floating">
+                      <textarea
+                        className="form-control"
+                        placeholder="Qualification"
+                        value={qualification}
+                        onChange={(e) => setQualification(e.target.value)}
                       />
-                    )}
+                      <label>Qualification</label>
+                    </div>
                   </div>
+
+
 
                   <div className="col-12">
                     <button className="btn btn-primary w-100 py-3" type="submit">

@@ -23,6 +23,7 @@ const register = (req, res) => {
                 res.send({
                     success: false,
                     status: 400,
+                    
                     message: "Email Already Exists"
                 });
             } else {

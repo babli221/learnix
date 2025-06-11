@@ -27,7 +27,7 @@ const teacherStorage = multer.diskStorage({
     }
 })
 const teacherUpload = multer({ storage: teacherStorage })
-router.post("/teacher/add", teacherUpload.single('profile'), teacherController.register)
+router.post("/teacher/add", teacherUpload.single('profile'), teacherController.add)
 router.post("/teacher/update", teacherUpload.single('profile'), teacherController.update)
 router.post("/teacher/all", teacherUpload.single('profile'), teacherController.all)
 router.post("/teacher/single", teacherUpload.single('profile'), teacherController.single)

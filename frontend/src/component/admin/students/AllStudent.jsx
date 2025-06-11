@@ -73,8 +73,7 @@ export default function AllStudent() {
                                         <th scope="col">Contact</th>
                                         <th scope="col">Address</th>
                                         <th scope="col">Qualification</th>
-                                        <th scope="col">Gender</th>
-                                        <th scope="col">DOB</th>
+                                        
                                         <th scope="col">Status</th>
                                         <th scope="col">Created At</th>
                                         <th scope="col">Edit</th>
@@ -91,8 +90,7 @@ export default function AllStudent() {
                                                 <td>{el?.contact}</td>
                                                 <td>{el?.address}</td>
                                                 <td>{el?.qualification}</td>
-                                                <td>{el?.gender}</td>
-                                                <td>{el?.dob}</td>
+                                                
                                                 <td>{el?.status ? "Active" : "Inactive"}</td>
                                                 <td>{el?.createdAt}</td>
                                                 <td>

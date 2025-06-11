@@ -95,6 +95,7 @@ export default function AllTeacher() {
                                 </thead>
                                 <tbody>
                                     {allTeachers.map((el, index) => {
+                                        console.log(el)
                                         return (
                                             <tr key={index}>
                                                 <th scope="row">{index + 1}</th>
@@ -104,15 +105,13 @@ export default function AllTeacher() {
                                                 <td>{el?.address}</td>
                                                 <td>{el?.qualification}</td>
                                                 <td>
-                                                    {el?.file ? (
+                                                   
                                                         <img
-                                                            src={`http://localhost:5000/uploads/${el.file}`}
+                                                            src={"http://localhost:5000/"+ el.profile}
                                                             alt="Profile"
-                                                            style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "5px" }}
+                                                            // style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "5px" }}
                                                         />
-                                                    ) : (
-                                                        "No Image"
-                                                    )}
+                                                  
                                                 </td>
                                                 <td>{el?.status ? "Active" : "Inactive"}</td>
                                                 <td>

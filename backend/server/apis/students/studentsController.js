@@ -14,6 +14,18 @@ const register = (req, res) => {
     if (!req.body.password) {
         validation += "password is required "
     }
+     if (!req.body.contact) {
+        validation += "contact is required "
+    }
+    if (!req.body.address) {
+        validation += "address is required "
+    }
+    if (!req.body.qualification) {
+        validation += "qualification is required "
+    }
+    
+    
+
 
     if (!!validation) {
         res.send({
@@ -44,6 +56,11 @@ const register = (req, res) => {
                             newStudent.autoId = totalStudents + 1
                             newStudent.name = req.body.name
                             newStudent.email = req.body.email
+                            newStudent.contact = req.body.contact
+                            newStudent.address = req.body.address
+                            newStudent.qualification = req.body.qualification
+
+
                             newStudent.userId = savedUser._id
                             newStudent.save().then((savedStudent) => {
                                 newUser.TeacherId = savedStudent._id
@@ -200,6 +217,8 @@ const update = (req, res) => {
             if (req.body.contact) studentData.contact = req.body.contact;
             if (req.body.address) studentData.address = req.body.address;
             if (req.body.qualification) studentData.qualification = req.body.qualification;
+            if (req.body.gender) studentData.gender = req.body.gender;
+            if (req.body.dob) studentData.gender = req.body.dob;
             if (req.file) studentData.profile = "students/" + req.file.filename;
 
             studentData.save().then((updatedStudent) => {

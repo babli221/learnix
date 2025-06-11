@@ -11,8 +11,7 @@ export default function AddStudent() {
     const [contact, setContact] = useState("")
     const [address, setAddress] = useState("")
     const [qualification, setQualification] = useState("")
-    const [gender, setGender] = useState("")  // default value ""
-    const [dob, setDob] = useState("")  // default value ""
+    
 
     const nav = useNavigate()
 
@@ -26,8 +25,7 @@ export default function AddStudent() {
             contact: contact,
             address: address,
             qualification: qualification,
-            gender: gender,  // adding gender
-            dob: dob  // adding dob
+            
         }
 
         ApiServices.AddStudent(data)
@@ -146,35 +144,9 @@ export default function AddStudent() {
                                         </div>
                                     </div>
 
-                                    {/* Gender Field */}
-                                    <div className="col-12">
-                                        <div className="form-floating">
-                                            <select
-                                                className="form-control"
-                                                value={gender}
-                                                onChange={(e) => setGender(e.target.value)}
-                                            >
-                                                <option value="">Select Gender</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                            <label>Gender</label>
-                                        </div>
-                                    </div>
-
+                                    
                                     {/* Date of Birth Field */}
-                                    <div className="col-12">
-                                        <div className="form-floating">
-                                            <input
-                                                type="date"
-                                                className="form-control"
-                                                value={dob}
-                                                onChange={(e) => setDob(e.target.value)}
-                                            />
-                                            <label>Date of Birth</label>
-                                        </div>
-                                    </div>
+                                   
 
                                     <div className="col-12">
                                         <button className="btn btn-primary w-100 py-3" type="submit">
