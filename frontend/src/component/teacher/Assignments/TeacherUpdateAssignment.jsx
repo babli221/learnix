@@ -20,7 +20,7 @@ export default function TeacherUpdateAssignment() {
                     setTitle(res.data.data.title);
                     setDescription(res.data.data.description);
                     setMarks(res.data.data.marks);
-                    setDueDate(res.data.data.dueDate); 
+                    setDueDate(res.data.data.dueDate);
                 } else {
                     toast.error(res.data.message);
                 }
@@ -48,7 +48,8 @@ export default function TeacherUpdateAssignment() {
             .then((res) => {
                 if (res.data.success) {
                     toast.success(res.data.message);
-                    nav("");
+                    nav("/teacher/singleclass/" + sessionStorage.getItem("classId") + "/" + sessionStorage.getItem("teacherId"));
+
                 } else {
                     toast.error(res.data.message);
                 }
@@ -145,7 +146,7 @@ export default function TeacherUpdateAssignment() {
                                             type="file"
                                             className="form-control"
                                             id="file"
-                                            
+
                                             onChange={(e) => setFile(e.target.files[0])}
                                         />
                                     </div>

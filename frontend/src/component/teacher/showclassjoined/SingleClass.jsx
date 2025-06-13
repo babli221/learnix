@@ -24,9 +24,9 @@ export default function SingleClass() {
             .then((res) => {
                 console.log(res.data);
                 if (res.data.success) {
-                    toast.success(res.data.message);
+                    // toast.success(res.data.message);
                     setTeacherMaterials(res?.data?.data);
-                    console.log(res.data.data);
+                    console.log("allmaterial",res.data.data);
                 } else {
                     toast.error(res.data.message);
                 }
@@ -57,6 +57,7 @@ export default function SingleClass() {
                 console.log(res.data);
                 if (res.data.success) {
                     setTeacherAssignments(res?.data?.data);
+                    console.log("Teacher Assignment", res?.data?.data)
                 } else {
                     toast.error(res.data.message);
                 }
@@ -169,7 +170,7 @@ export default function SingleClass() {
                                 </div>
                                 <div className="row g-4 justify-content-center mt-5">
                                     {teacherMaterials
-                                        .filter(el => el?.teacherId?._id === sessionStorage.getItem("teacherId"))
+                                        .filter(el => (el?.teacherId?._id === sessionStorage.getItem("teacherId")) && (el?.classId?._id === sessionStorage.getItem("classId")))
                                         .map((el, index) => (
                                             <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" key={index}>
                                                 <div className="course-item bg-light">
@@ -187,7 +188,7 @@ export default function SingleClass() {
                                                         <small className="flex-fill text-center border-end py-2">{el?.description}</small>
                                                     </div>
 
-                                                    {/* ✅ FIXED BUTTON ALIGNMENT */}
+                                                    {/*FIXED BUTTON ALIGNMENT */}
                                                     <div className="d-flex justify-content-between px-4 py-3">
                                                         <Link to={"/teacher/teacherupdatematerial/" + el._id} className="btn btn-sm btn-outline-primary">
                                                             Update Material
@@ -215,7 +216,8 @@ export default function SingleClass() {
                                 </div>
                                 <div className="row g-4 justify-content-center mt-5">
                                     {teacherAssignments
-                                        .filter(el => el?.teacherId?._id === sessionStorage.getItem("teacherId"))
+
+                                        .filter(el => el?.teacherId?._id === sessionStorage.getItem("teacherId")  &&  (el?.classId?._id === sessionStorage.getItem("classId")))
                                         .map((el, index) => (
                                             <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" key={index}>
                                                 <div className="course-item bg-light">
@@ -232,16 +234,15 @@ export default function SingleClass() {
                                                     <div className="d-flex border-top">
                                                         <small className="flex-fill text-center border-end py-2">{el?.description}</small>
                                                     </div>
-                                                    <button className="btn">
-                                                        <Link to={"/teacher/teacherupdateassignment/ " + el._id}>
+                                                    {/*FIXED BUTTON ALIGNMENT */}
+                                                    <div className="d-flex justify-content-between px-4 py-3">
+                                                        <Link to={"/teacher/teacherupdateassignment/" + el._id} className="btn btn-sm btn-outline-primary">
                                                             Update Assignment
                                                         </Link>
-                                                    </button>
-                                                    <button className="btn btn-danger" onClick={() => {
-                                                        deleteAssignment(el._id)
-                                                    }}>
-                                                        <i className="fa-solid fa-trash" />
-                                                    </button>
+                                                        <button className="btn btn-sm btn-danger" onClick={() => deleteAssignment(el._id)}>
+                                                            <i className="fa-solid fa-trash" />
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         ))}
@@ -261,7 +262,7 @@ export default function SingleClass() {
                                 </div>
                                 <div className="row g-4 justify-content-center mt-5">
                                     {teacherAnnouncements
-                                        .filter(el => el?.teacherId?._id === sessionStorage.getItem("teacherId"))
+                                        .filter(el => el?.teacherId?._id === sessionStorage.getItem("teacherId") && (el?.classId?._id === sessionStorage.getItem("classId")))
                                         .map((el, index) => (
                                             <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" key={index}>
                                                 <div className="course-item bg-light">
@@ -278,16 +279,15 @@ export default function SingleClass() {
                                                     <div className="d-flex border-top">
                                                         <small className="flex-fill text-center border-end py-2">{el?.description}</small>
                                                     </div>
-                                                    <button className="btn">
-                                                        <Link to={"/teacher/teacherupdateannouncement/" + el._id}>
+                                                    {/*FIXED BUTTON ALIGNMENT */}
+                                                    <div className="d-flex justify-content-between px-4 py-3">
+                                                        <Link to={"/teacher/teacherupdateannouncement/" + el._id} className="btn btn-sm btn-outline-primary">
                                                             Update Announcement
                                                         </Link>
-                                                    </button>
-                                                    <button className="btn btn-danger" onClick={() => {
-                                                        deleteAnnouncement(el._id)
-                                                    }}>
-                                                        <i className="fa-solid fa-trash" />
-                                                    </button>
+                                                        <button className="btn btn-sm btn-danger" onClick={() => deleteAnnouncement(el._id)}>
+                                                            <i className="fa-solid fa-trash" />
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         ))}

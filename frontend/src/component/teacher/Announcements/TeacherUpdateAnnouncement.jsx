@@ -42,7 +42,7 @@ export default function TeacherUpdateAnnouncement() {
             .then((res) => {
                 if (res.data.success) {
                     toast.success(res.data.message);
-                    nav("/teacher/teacherallannouncement");
+                    nav("/teacher/singleclass/"+sessionStorage.getItem("classId")+ "/" +sessionStorage.getItem("teacherId"));
                 } else {
                     toast.error(res.data.message);
                 }

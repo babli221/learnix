@@ -218,6 +218,8 @@ const single = (req, res) => {
 };
 
 const all = async (req, res) => {
+      req.body.status = "true"
+
     Announcement.find(req.body)
         .populate("teacherId")
         .populate("classId")
