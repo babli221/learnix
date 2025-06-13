@@ -73,6 +73,10 @@ class ApiServices {
         return axios.post(BaseUrl + "admin/students/all", null, { headers: this.getToken() });
     }
 
+    AllStudent2() {
+        return axios.post(BaseUrl + "teacher/students/all", null, { headers: this.getToken() });
+    }
+
     DeleteStudent(data) {
         return axios.post(BaseUrl + "admin/students/softDelete", data, { headers: this.getToken() });
     }

@@ -124,4 +124,7 @@ router.post("/comment/softDelete", commentController.softDelete)
 // user
 router.post("/password/change", userController.changePassword)
 
+//student
+router.post("/students/all", studentsController.all)
+
 module.exports = router;
