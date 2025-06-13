@@ -5,56 +5,45 @@ import { useNavigate } from "react-router-dom"
 
 export default function TeacherAddAnnouncement() {
 
-    //Make State
-    
-    const [classid, setClassId] = useState("")
-    const [teacherid, setTeacherId] = useState("")
     const [title, setTitle] = useState("")
+    const [file, setFile] = useState(null)
     const [description, setDescription] = useState("")
-    const [file, setFile] = useState("")
 
     var nav = useNavigate()
-            
-        
-            function handleForm(e) {
-                e.preventDefault()
-        
-                // console.log(classid, teacherid, title, description, file)
-        
-                let data = {
-                    classId : classid,
-                    teacherId : teacherid,
-                    title : title,
-                    description : description,
-                    file : file
-        
+
+    function handleForm(e) {
+        e.preventDefault()
+
+        console.log(file)
+
+        const formData = new FormData();
+        formData.append("teacherId", sessionStorage.getItem("teacherId"));
+        formData.append("classId", sessionStorage.getItem("classId"));
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("file", file); 
+
+       
+        ApiServices.TeacherAddAnnouncement(formData)
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.success) {
+                    toast.success(res.data.message)
+
+                    setTitle("")
+                    setDescription("")
+
+                    nav("/teacher/teacheraddannouncement")
+
+                } else {
+                    toast.error(res.data.message)
                 }
-                ApiServices.TeacherAddAnnouncement(data)
-                            .then((res) => {
-                                console.log(res.data)
-                                if(res.data.success){
-                                    toast.success(res.data.message) 
-                
-                                    
-                                    setClassId("")
-                                    setTeacherId("")
-                                    setTitle("")
-                                    setDescription("")
-                                    setFile("")
-                                    
-                                    
-                
-                                    nav("/teacher/teacheraddannouncement")
-                
-                                }else{
-                                    toast.error(res.data.message)
-                                }
-                            })
-                            .catch((err) => {
-                                toast.error("Something Went Wrong")
-                                console.log(err)
-                            })
-                    }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong")
+                console.log(err)
+            })
+    }
 
     return (
         <>
@@ -84,45 +73,10 @@ export default function TeacherAddAnnouncement() {
                                                 required
                                                 value={title}
                                                 onChange={(e) => {
-                                                    setName(e.target.value)
+                                                    setTitle(e.target.value)
                                                 }}
                                             />
                                             <label htmlFor="announcementTitle">Title</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Class Selection */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="announcementClass" className="form-select" required
-                                            value={classid}
-                                                onChange={(e) => {
-                                                    setName(e.target.value)
-                                                }}>
-                                                <option value="">-- Select Class --</option>
-                                                <option value="react">React</option>
-                                                <option value="java">Java</option>
-                                                <option value="javascript">JavaScript</option>
-                                            </select>
-                                            <label htmlFor="announcementClass">Class</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Teacher Selection */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="announcementTeacher" className="form-select" required
-                                            value={teacherid}
-                                                onChange={(e) => {
-                                                    setName(e.target.value)
-                                                }}>
-                                                <option value="">-- Select Teacher --</option>
-                                                <option value="khurana">Mr Khurana</option>
-                                                <option value="khan">Mr Khan</option>
-                                                <option value="john">John</option>
-                                                <option value="mohinder">Mohinder</option>
-                                            </select>
-                                            <label htmlFor="announcementTeacher">Teacher</label>
                                         </div>
                                     </div>
 
@@ -136,24 +90,24 @@ export default function TeacherAddAnnouncement() {
                                                 style={{ height: '100px' }}
                                                 value={description}
                                                 onChange={(e) => {
-                                                    setName(e.target.value)
+                                                    setDescription(e.target.value)
                                                 }}
                                             ></textarea>
                                             <label htmlFor="announcementDescription">Description</label>
                                         </div>
                                     </div>
 
-                                    {/* File Upload */}
+                                    {/* Upload File */}
                                     <div className="col-12">
-                                        <label className="form-label fw-bold">Attach File (if any)</label>
+                                        <label className="form-label fw-bold">Upload Announcement File</label>
                                         <input
                                             type="file"
                                             className="form-control"
-                                            id="announcementFile"
-                                            accept=".pdf,.doc,.docx,.jpg,.png"
+                                            id="file"
+                                            required
                                             onChange={(e) => {
-                                                    file(e.target.files[0])
-                                                }}
+                                                setFile(e.target.files[0])
+                                            }}
                                         />
                                     </div>
 

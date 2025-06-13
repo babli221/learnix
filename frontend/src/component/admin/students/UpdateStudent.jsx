@@ -11,8 +11,29 @@ export default function UpdateStudent() {
   const [contact, setContact] = useState("");
   const [address, setAddress] = useState("");
   const [qualification, setQualification] = useState("");
+  const [className, setClassName] = useState("");
 
+  const [allClasses, setAllClasses] = useState([]);
 
+  // --------------------- All API ---------------------
+  function fetchClasses() {
+    ApiServices.AllClass()
+      .then((res) => {
+        if (res.data.success) {
+          setAllClasses(res?.data?.data);
+        } else {
+          toast.error(res.data?.message || "Failed to fetch class list");
+        }
+      })
+      .catch((err) => {
+        toast.error("Something went wrong");
+        console.log(err);
+      });
+  }
+
+  useEffect(() => {
+    fetchClasses();
+  }, []);
 
   useEffect(() => {
     ApiServices.SingleStudent({ _id: params.id })
@@ -22,18 +43,16 @@ export default function UpdateStudent() {
           setContact(res.data.data.contact);
           setAddress(res.data.data.address);
           setQualification(res.data.data.qualification);
-
+          setClassName(res.data.data.class); 
         } else {
-          toast.error(res.data.message);
+          toast.error(res.data?.message || "Failed to load student");
         }
       })
       .catch((err) => {
-        toast.error("Something went wrong!");
+        toast.error("Something went wrong");
         console.log(err);
       });
   }, [params.id]);
-
-
 
   function updateStudent(e) {
     e.preventDefault();
@@ -44,20 +63,20 @@ export default function UpdateStudent() {
       contact,
       address,
       qualification,
-
+      class: className,
     };
 
     ApiServices.UpdateStudent(data)
       .then((res) => {
         if (res.data.success) {
-          toast.success(res.data.message);
+          toast.success(res.data?.message || "Student updated successfully");
           nav("/admin/allstudent");
         } else {
-          toast.error(res.data.message);
+          toast.error(res.data?.message || "Update failed");
         }
       })
       .catch((err) => {
-        toast.error("Something went wrong!");
+        toast.error("Something went wrong");
         console.log(err);
       });
   }
@@ -102,9 +121,25 @@ export default function UpdateStudent() {
                     </div>
                   </div>
 
-
-
-
+                  <div className="col-12">
+                    <div className="form-floating">
+                      <select
+                        name="class"
+                        id="classSelect"
+                        className="form-select"
+                        value={className}
+                        onChange={(e) => setClassName(e.target.value)}
+                      >
+                        <option value="">-- Select a Class --</option>
+                        {allClasses.map((el) => (
+                          <option key={el._id} value={el._id}>
+                            {el.name}
+                          </option>
+                        ))}
+                      </select>
+                      <label htmlFor="classSelect">Class</label>
+                    </div>
+                  </div>
 
                   <div className="col-12">
                     <div className="form-floating">
@@ -117,6 +152,7 @@ export default function UpdateStudent() {
                       <label>Address</label>
                     </div>
                   </div>
+
                   <div className="col-12">
                     <div className="form-floating">
                       <textarea
@@ -128,8 +164,6 @@ export default function UpdateStudent() {
                       <label>Qualification</label>
                     </div>
                   </div>
-
-
 
                   <div className="col-12">
                     <button className="btn btn-primary w-100 py-3" type="submit">

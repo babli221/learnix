@@ -94,6 +94,13 @@ class ApiServices {
     TeacherDeleteMaterial(data) {
         return axios.post(BaseUrl + "teacher/material/softDelete", data, { headers: this.getToken() });
     }
+    TeacherSingleMaterial(data) {
+        return axios.post(BaseUrl + "teacher/material/single", data, { headers: this.getToken() });
+    }
+    TeacherUpdateMaterial(data) {
+        return axios.post(BaseUrl + "teacher/material/update", data, { headers: this.getToken() });
+    }
+    
 
     // ----- Teacher > Assignment -----
     TeacherAddAssignment(data) {
@@ -107,6 +114,12 @@ class ApiServices {
     TeacherDeleteAssignment(data) {
         return axios.post(BaseUrl + "teacher/assignment/softDelete", data, { headers: this.getToken() });
     }
+    TeacherSingleAssignment(data) {
+        return axios.post(BaseUrl + "teacher/assignment/single", data, { headers: this.getToken() });
+    }
+    TeacherUpdateAssignment(data) {
+        return axios.post(BaseUrl + "teacher/assignment/update", data, { headers: this.getToken() });
+    }
 
     // ----- Teacher > Announcement -----
     TeacherAddAnnouncement(data) {
@@ -119,6 +132,12 @@ class ApiServices {
 
     TeacherDeleteAnnouncement(data) {
         return axios.post(BaseUrl + "teacher/announcement/softDelete", data, { headers: this.getToken() });
+    }
+    TeacherSingleAnnouncement(data) {
+        return axios.post(BaseUrl + "teacher/announcement/single", data, { headers: this.getToken() });
+    }
+    TeacherUpdateAnnouncement(data) {
+        return axios.post(BaseUrl + "teacher/announcement/update", data, { headers: this.getToken() });
     }
 
     // ----- Admin Change Password -----

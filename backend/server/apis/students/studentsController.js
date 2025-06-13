@@ -23,6 +23,10 @@ const register = (req, res) => {
     if (!req.body.qualification) {
         validation += "qualification is required "
     }
+    if (!req.body.class) {
+        validation += "class is required "
+    }
+
     
     
 
@@ -58,6 +62,7 @@ const register = (req, res) => {
                             newStudent.email = req.body.email
                             newStudent.contact = req.body.contact
                             newStudent.address = req.body.address
+                            newStudent.class = req.body.class
                             newStudent.qualification = req.body.qualification
 
 
@@ -243,11 +248,11 @@ const update = (req, res) => {
                             });
                         });
                     } else {
-                        // User record might not exist, still return student update
+                       
                         res.send({
                             status: 200,
                             success: true,
-                            message: "Student record updated, user record not found.",
+                            message: "Student record updated",
                             data: updatedStudent
                         });
                     }
@@ -379,32 +384,33 @@ const single = (req, res) => {
 }
 
 const all = async (req, res) => {
-    Student.find(req.body).then(async (data) => {
-        await Student.countDocuments(req.body).then((total) => {
-            res.send({
-                status: 200,
-                success: true,
-                message: "Students Loaded Successfully",
-                total: total,
-                data: data
-            })
-
+    Student.find(req.body)
+        .populate("class")  
+        .then(async (data) => {
+            await Student.countDocuments(req.body).then((total) => {
+                res.send({
+                    status: 200,
+                    success: true,
+                    message: "Students Loaded Successfully",
+                    total: total,
+                    data: data
+                });
+            }).catch((err) => {
+                res.send({
+                    success: false,
+                    status: 400,
+                    message: err
+                });
+            });
         }).catch((err) => {
             res.send({
                 success: false,
                 status: 400,
                 message: err
-            })
-        })
-    }).catch((err) => {
-        res.send({
-            success: false,
-            status: 400,
-            message: err
-        })
-    })
+            });
+        });
+};
 
-}
 
 
 module.exports = {

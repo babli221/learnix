@@ -32,7 +32,7 @@ export default function UpdateClass() {
         console.log(err);
       });
 
-    // 🔥 Fetch all teachers
+    //  Fetch all teachers
     ApiServices.AllTeacher()
       .then((res) => {
         if (res.data.success) {

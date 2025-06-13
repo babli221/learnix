@@ -1,15 +1,15 @@
-const Assignment = require("./assignmentsModel")
+const Assignment = require("./assignmentsModel");
 
 const add = async (req, res) => {
     let validation = "";
-    if (!req.body.title) {
-        validation += "title is required";
+    if (!req.body?.title) {
+        validation += "title is required ";
     }
-    if (!req.body.classId) {
-        validation += "classId is required";
+    if (!req.body?.classId) {
+        validation += "classId is required ";
     }
-    if (!req.body.teacherId) {
-        validation += "teacherId is required";
+    if (!req.body?.teacherId) {
+        validation += "teacherId is required ";
     }
     if (!!validation) {
         res.send({
@@ -28,7 +28,6 @@ const add = async (req, res) => {
         newAssignment.marks = req.body.marks;
         newAssignment.dueDate = req.body.dueDate;
         if (req.file) {
-
             newAssignment.file = "assignments/" + req.file.filename;
         }
         newAssignment
@@ -51,10 +50,8 @@ const add = async (req, res) => {
     }
 };
 
-
-
 const update = (req, res) => {
-    validation = "";
+    let validation = "";
     if (!req.body._id) {
         validation += "_id is required";
     }
@@ -124,8 +121,6 @@ const update = (req, res) => {
     }
 };
 
-
-
 const softDelete = (req, res) => {
     let validation = "";
     if (!req.body._id) {
@@ -181,7 +176,6 @@ const softDelete = (req, res) => {
             });
     }
 };
-
 
 const single = (req, res) => {
     let validation = "";
@@ -257,15 +251,10 @@ const all = async (req, res) => {
         });
 };
 
-
-
-
-
-
-
-
-
-
 module.exports = {
-    add, update, softDelete, single, all
-}
+    add,
+    update,
+    softDelete,
+    single,
+    all,
+};

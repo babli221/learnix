@@ -1,4 +1,58 @@
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import ApiServices from "../../layout/ApiServices";
+import { toast } from "react-toastify";
+
 export default function TeacherUpdateAnnouncement() {
+    const params = useParams();
+    const nav = useNavigate();
+
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [file, setFile] = useState(null);
+
+    useEffect(() => {
+        ApiServices.TeacherSingleAnnouncement({ _id: params.id })
+            .then((res) => {
+                if (res.data.success) {
+                    setTitle(res.data.data.title);
+                    setDescription(res.data.data.description);
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something went wrong!");
+                console.log(err);
+            });
+    }, [params.id]);
+
+    function updateAnnouncement(e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("_id", params.id);
+        formData.append("title", title);
+        formData.append("description", description);
+        if (file) {
+            formData.append("file", file);
+        }
+
+        ApiServices.TeacherUpdateAnnouncement(formData)
+            .then((res) => {
+                if (res.data.success) {
+                    toast.success(res.data.message);
+                    nav("/teacher/teacherallannouncement");
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something went wrong!");
+                console.log(err);
+            });
+    }
+
     return (
         <>
             {/* Update Announcement */}
@@ -13,7 +67,7 @@ export default function TeacherUpdateAnnouncement() {
 
                     <div className="row g-4 justify-content-center">
                         <div className="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                            <form>
+                            <form onSubmit={updateAnnouncement}>
                                 <div className="row g-3">
                                     {/* Title */}
                                     <div className="col-12">
@@ -23,34 +77,11 @@ export default function TeacherUpdateAnnouncement() {
                                                 className="form-control"
                                                 id="title"
                                                 placeholder="Announcement Title"
-                                                defaultValue="Important Update"
+                                                value={title}
+                                                onChange={(e) => setTitle(e.target.value)}
+                                                required
                                             />
                                             <label htmlFor="title">Title</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Class Select */}
-                                    <div className="col-12">
-                                        <div className="form-floating">
-                                            <select className="form-select" id="classSelect" defaultValue="Java">
-                                                <option value="React">React</option>
-                                                <option value="Java">Java</option>
-                                                <option value="Javascript">JavaScript</option>
-                                            </select>
-                                            <label htmlFor="classSelect">Class</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Teacher Select */}
-                                    <div className="col-12">
-                                        <div className="form-floating">
-                                            <select className="form-select" id="teacherSelect" defaultValue="Mr Khan">
-                                                <option value="Mr Khurana">Mr Khurana</option>
-                                                <option value="Mr Khan">Mr Khan</option>
-                                                <option value="John">John</option>
-                                                <option value="Mohinder">Mohinder</option>
-                                            </select>
-                                            <label htmlFor="teacherSelect">Teacher</label>
                                         </div>
                                     </div>
 
@@ -62,7 +93,9 @@ export default function TeacherUpdateAnnouncement() {
                                                 className="form-control"
                                                 id="description"
                                                 placeholder="Description"
-                                                defaultValue="Updated details for upcoming exam."
+                                                value={description}
+                                                onChange={(e) => setDescription(e.target.value)}
+                                                required
                                             />
                                             <label htmlFor="description">Description</label>
                                         </div>
@@ -75,6 +108,7 @@ export default function TeacherUpdateAnnouncement() {
                                                 type="file"
                                                 className="form-control"
                                                 id="fileUpload"
+                                                onChange={(e) => setFile(e.target.files[0])}
                                             />
                                             <label htmlFor="fileUpload">Upload File</label>
                                         </div>

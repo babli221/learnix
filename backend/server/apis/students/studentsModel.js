@@ -8,6 +8,7 @@ const studentsSchema = new mongoose.Schema({
     contact: { type: Number },
     address: { type: String },
     profile: { type: String },
+    class: {type: mongoose.Schema.Types.ObjectId, default: null, ref: 'class'},
     qualification: { type: String },
     status: { type: Boolean, default: true },
     createdAt: { type: Date, default: Date.now() },

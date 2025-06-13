@@ -1,4 +1,58 @@
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import ApiServices from "../../layout/ApiServices";
+import { toast } from "react-toastify";
+
 export default function TeacherUpdateMaterial() {
+    const params = useParams();
+    const nav = useNavigate();
+
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [file, setFile] = useState(null);
+
+    useEffect(() => {
+        ApiServices.TeacherSingleMaterial({ _id: params.id })
+            .then((res) => {
+                if (res.data.success) {
+                    setTitle(res.data.data.title);
+                    setDescription(res.data.data.description);
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something went wrong!");
+                console.log(err);
+            });
+    }, [params.id]);
+
+    function updateMaterial(e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("_id", params.id);
+        formData.append("title", title);
+        formData.append("description", description);
+        if (file) {
+            formData.append("file", file);
+        }
+
+        ApiServices.TeacherUpdateMaterial(formData)
+            .then((res) => {
+                if (res.data.success) {
+                    toast.success(res.data.message);
+                    nav("");
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something went wrong!");
+                console.log(err);
+            });
+    }
+
     return (
         <>
             {/* Update Material */}
@@ -13,36 +67,8 @@ export default function TeacherUpdateMaterial() {
 
                     <div className="row g-4 justify-content-center d-flex">
                         <div className="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                            <form>
+                            <form onSubmit={updateMaterial}>
                                 <div className="row g-3">
-
-                                    {/* Select Teacher */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="teacher" className="form-select" required>
-                                                <option value="">-- Select Teacher --</option>
-                                                <option value="mr_khurana">Mr. Khurana</option>
-                                                <option value="mr_khan">Mr. Khan</option>
-                                                <option value="john">John</option>
-                                                <option value="mohinder">Mohinder</option>
-                                            </select>
-                                            <label htmlFor="teacher">Teacher</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Select Class */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="class" className="form-select" required>
-                                                <option value="">-- Select Class --</option>
-                                                <option value="react">React</option>
-                                                <option value="javascript">JavaScript</option>
-                                                <option value="java">Java</option>
-                                            </select>
-                                            <label htmlFor="class">Class</label>
-                                        </div>
-                                    </div>
-
                                     {/* Material Title */}
                                     <div className="col-12">
                                         <div className="form-floating">
@@ -52,6 +78,8 @@ export default function TeacherUpdateMaterial() {
                                                 id="title"
                                                 placeholder="Enter Title"
                                                 required
+                                                value={title}
+                                                onChange={(e) => setTitle(e.target.value)}
                                             />
                                             <label htmlFor="title">Material Title</label>
                                         </div>
@@ -66,6 +94,8 @@ export default function TeacherUpdateMaterial() {
                                                 placeholder="Enter Description"
                                                 style={{ height: '100px' }}
                                                 required
+                                                value={description}
+                                                onChange={(e) => setDescription(e.target.value)}
                                             ></textarea>
                                             <label htmlFor="description">Material Description</label>
                                         </div>
@@ -79,7 +109,7 @@ export default function TeacherUpdateMaterial() {
                                             className="form-control"
                                             id="file"
                                             accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png"
-                                            required
+                                            onChange={(e) => setFile(e.target.files[0])}
                                         />
                                     </div>
 

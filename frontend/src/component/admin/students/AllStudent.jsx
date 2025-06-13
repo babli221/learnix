@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 export default function AllStudent() {
 
     const [allStudents, setAllStudents] = useState([]);
+    const [allClasses, setAllClasses] = useState([]);
 
     // --------------------- All API ---------------------
 
@@ -24,8 +25,24 @@ export default function AllStudent() {
             });
     }
 
+    function fetchClasses() {
+        ApiServices.AllClass()
+            .then((res) => {
+                if (res.data.success) {
+                    setAllClasses(res?.data?.data); 
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong");
+                console.log(err);
+            });
+    }
+
     useEffect(() => {
         fetchStudents();
+        fetchClasses();
     }, []);
 
     // --------------------- Delete API ---------------------
@@ -51,6 +68,7 @@ export default function AllStudent() {
             });
     }
 
+
     return (
         <>
             {/* All Student */}
@@ -70,6 +88,7 @@ export default function AllStudent() {
                                         <th scope="col">S No.</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Class</th>
                                         <th scope="col">Contact</th>
                                         <th scope="col">Address</th>
                                         <th scope="col">Qualification</th>
@@ -87,6 +106,7 @@ export default function AllStudent() {
                                                 <th scope="row">{index + 1}</th>
                                                 <td>{el?.name}</td>
                                                 <td>{el?.email}</td>
+                                                <td>{el?.class?.name}</td>
                                                 <td>{el?.contact}</td>
                                                 <td>{el?.address}</td>
                                                 <td>{el?.qualification}</td>

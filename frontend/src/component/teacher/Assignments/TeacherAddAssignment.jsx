@@ -4,63 +4,50 @@ import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
 
 export default function TeacherAddAssignment() {
-    //Make State
-    
-    const [classid, setClassId] = useState("")
-    const [teacherid, setTeacherId] = useState("")
     const [title, setTitle] = useState("")
+    const [file, setFile] = useState(null)
     const [description, setDescription] = useState("")
     const [marks, setMarks] = useState("")
     const [duedate, setDueDate] = useState("")
-    const [file, setFile] = useState("")
 
     var nav = useNavigate()
-        
-    
-        function handleForm(e) {
-            e.preventDefault()
-    
-            // console.log(classid, teacherid, title, description, marks, duedate, file)
-    
-            let data = {
-                classId : classid,
-                teacherId : teacherid,
-                title : title,
-                description : description,
-                marks : marks,
-                dueDate : duedate,
-                file : file
-    
-            }
-            ApiServices.TeacherAddAssignment(data)
-                        .then((res) => {
-                            console.log(res.data)
-                            if(res.data.success){
-                                toast.success(res.data.message) 
-            
-                                
-                                setClassId("")
-                                setTeacherId("")
-                                setTitle("")
-                                setDescription("")
-                                setMarks("")
-                                setDueDate("")
-                                setFile("")
-                                
-                                
-            
-                                nav("/teacher/teacheraddassignment")
-            
-                            }else{
-                                toast.error(res.data.message)
-                            }
-                        })
-                        .catch((err) => {
-                            toast.error("Something Went Wrong")
-                            console.log(err)
-                        })
+
+    function handleForm(e) {
+        e.preventDefault()
+
+        console.log(file)
+
+        const formData = new FormData();
+        formData.append("teacherId", sessionStorage.getItem("teacherId"))
+        formData.append("classId", sessionStorage.getItem("classId"))
+        formData.append("title", title)
+        formData.append("marks", Number(marks)) // ✅ Fix: ensure number
+        formData.append("dueDate", duedate)     // ✅ Fix: use date string
+        formData.append("description", description)
+        formData.append("file", file)
+
+        ApiServices.TeacherAddAssignment(formData)
+            .then((res) => {
+                console.log(res.data)
+                if (res.data.success) {
+                    toast.success(res.data.message)
+
+                    setTitle("")
+                    setDescription("")
+                    setMarks("")
+                    setDueDate("")
+                    setFile(null)
+
+                    nav("/teacher/teacheraddassignment")
+                } else {
+                    toast.error(res.data.message)
                 }
-    
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong")
+                console.log("Error Details:", err.response?.data)
+            })
+    }
 
     return (
         <>
@@ -90,45 +77,10 @@ export default function TeacherAddAssignment() {
                                                 required
                                                 value={title}
                                                 onChange={(e) => {
-                                                    setName(e.target.value)
+                                                    setTitle(e.target.value)
                                                 }}
                                             />
                                             <label htmlFor="title">Assignment Title</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Select Class */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="class" className="form-select" required
-                                            value={classid}
-                                                onChange={(e) => {
-                                                    setName(e.target.value)
-                                                }}>
-                                                <option value="">-- Select Class --</option>
-                                                <option value="react">React</option>
-                                                <option value="java">Java</option>
-                                                <option value="javascript">JavaScript</option>
-                                            </select>
-                                            <label htmlFor="class">Class</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Select Teacher */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="teacher" className="form-select" required
-                                            value={teacherid}
-                                                onChange={(e) => {
-                                                    setName(e.target.value)
-                                                }}>
-                                                <option value="">-- Select Teacher --</option>
-                                                <option value="khurana">Mr. Khurana</option>
-                                                <option value="khan">Mr. Khan</option>
-                                                <option value="john">John</option>
-                                                <option value="mohinder">Mohinder</option>
-                                            </select>
-                                            <label htmlFor="teacher">Teacher</label>
                                         </div>
                                     </div>
 
@@ -143,7 +95,7 @@ export default function TeacherAddAssignment() {
                                                 required
                                                 value={description}
                                                 onChange={(e) => {
-                                                    setName(e.target.value)
+                                                    setDescription(e.target.value)
                                                 }}
                                             ></textarea>
                                             <label htmlFor="description">Description</label>
@@ -161,7 +113,7 @@ export default function TeacherAddAssignment() {
                                                 required
                                                 value={marks}
                                                 onChange={(e) => {
-                                                    setName(e.target.value)
+                                                    setMarks(e.target.value)
                                                 }}
                                             />
                                             <label htmlFor="marks">Marks</label>
@@ -179,7 +131,7 @@ export default function TeacherAddAssignment() {
                                                 required
                                                 value={duedate}
                                                 onChange={(e) => {
-                                                    setName(e.target.value)
+                                                    setDueDate(e.target.value)
                                                 }}
                                             />
                                             <label htmlFor="dueDate">Due Date</label>
@@ -193,11 +145,11 @@ export default function TeacherAddAssignment() {
                                             type="file"
                                             className="form-control"
                                             id="file"
-                                            accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png"
+                                            
                                             required
                                             onChange={(e) => {
-                                                    file(e.target.files[0])
-                                                }}
+                                                setFile(e.target.files[0])
+                                            }}
                                         />
                                     </div>
 
@@ -214,7 +166,6 @@ export default function TeacherAddAssignment() {
                     </div>
                 </div>
             </div>
-            {/* Add Assignment */}
         </>
     );
 }

@@ -1,4 +1,64 @@
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import ApiServices from "../../layout/ApiServices";
+import { toast } from "react-toastify";
+
 export default function TeacherUpdateAssignment() {
+    const params = useParams();
+    const nav = useNavigate();
+
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [marks, setMarks] = useState("");
+    const [dueDate, setDueDate] = useState("");
+    const [file, setFile] = useState(null);
+
+    useEffect(() => {
+        ApiServices.TeacherSingleAssignment({ _id: params.id })
+            .then((res) => {
+                if (res.data.success) {
+                    setTitle(res.data.data.title);
+                    setDescription(res.data.data.description);
+                    setMarks(res.data.data.marks);
+                    setDueDate(res.data.data.dueDate); 
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something went wrong!");
+                console.log(err);
+            });
+    }, [params.id]);
+
+    function updateAssignment(e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("_id", params.id);
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("marks", marks);
+        formData.append("dueDate", dueDate);
+        if (file) {
+            formData.append("file", file);
+        }
+
+        ApiServices.TeacherUpdateAssignment(formData)
+            .then((res) => {
+                if (res.data.success) {
+                    toast.success(res.data.message);
+                    nav("");
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => {
+                toast.error("Something went wrong!");
+                console.log(err);
+            });
+    }
+
     return (
         <>
             {/* Update Assignment */}
@@ -13,9 +73,8 @@ export default function TeacherUpdateAssignment() {
 
                     <div className="row g-4 justify-content-center d-flex">
                         <div className="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                            <form>
+                            <form onSubmit={updateAssignment}>
                                 <div className="row g-3">
-
                                     {/* Title */}
                                     <div className="col-12">
                                         <div className="form-floating">
@@ -25,35 +84,10 @@ export default function TeacherUpdateAssignment() {
                                                 id="title"
                                                 placeholder="Enter Assignment Title"
                                                 required
+                                                value={title}
+                                                onChange={(e) => setTitle(e.target.value)}
                                             />
                                             <label htmlFor="title">Title</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Class */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="class" className="form-select" required>
-                                                <option value="">-- Select Class --</option>
-                                                <option value="react">React</option>
-                                                <option value="java">Java</option>
-                                                <option value="javascript">JavaScript</option>
-                                            </select>
-                                            <label htmlFor="class">Class</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Teacher */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <select id="teacher" className="form-select" required>
-                                                <option value="">-- Select Teacher --</option>
-                                                <option value="khurana">Mr. Khurana</option>
-                                                <option value="khan">Mr. Khan</option>
-                                                <option value="john">John</option>
-                                                <option value="mohinder">Mohinder</option>
-                                            </select>
-                                            <label htmlFor="teacher">Teacher</label>
                                         </div>
                                     </div>
 
@@ -65,6 +99,9 @@ export default function TeacherUpdateAssignment() {
                                                 id="description"
                                                 placeholder="Enter Description"
                                                 style={{ height: '100px' }}
+                                                required
+                                                value={description}
+                                                onChange={(e) => setDescription(e.target.value)}
                                             ></textarea>
                                             <label htmlFor="description">Description</label>
                                         </div>
@@ -79,6 +116,8 @@ export default function TeacherUpdateAssignment() {
                                                 id="marks"
                                                 placeholder="Enter Marks"
                                                 required
+                                                value={marks}
+                                                onChange={(e) => setMarks(e.target.value)}
                                             />
                                             <label htmlFor="marks">Marks</label>
                                         </div>
@@ -92,21 +131,10 @@ export default function TeacherUpdateAssignment() {
                                                 className="form-control"
                                                 id="dueDate"
                                                 required
+                                                value={dueDate}
+                                                onChange={(e) => setDueDate(e.target.value)}
                                             />
                                             <label htmlFor="dueDate">Due Date</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Password (if needed) */}
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <input
-                                                type="password"
-                                                className="form-control"
-                                                id="password"
-                                                placeholder="Enter Password"
-                                            />
-                                            <label htmlFor="password">Password (optional)</label>
                                         </div>
                                     </div>
 
@@ -117,7 +145,8 @@ export default function TeacherUpdateAssignment() {
                                             type="file"
                                             className="form-control"
                                             id="file"
-                                            accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png"
+                                            
+                                            onChange={(e) => setFile(e.target.files[0])}
                                         />
                                     </div>
 
@@ -127,7 +156,6 @@ export default function TeacherUpdateAssignment() {
                                             Update Assignment
                                         </button>
                                     </div>
-
                                 </div>
                             </form>
                         </div>

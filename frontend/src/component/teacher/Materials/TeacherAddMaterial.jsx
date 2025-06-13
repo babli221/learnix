@@ -18,21 +18,12 @@ export default function TeacherAddMaterial() {
 
         console.log(file)
 
-        // let data = {
-        //     teacherId: sessionStorage.getItem("teacherId"),
-        //     classId: sessionStorage.getItem("classId"),
-        //     title: title,
-        //     file: file,
-        //     description: description
-
-        // }
-
         const formData = new FormData();
         formData.append("teacherId", sessionStorage.getItem("teacherId"));
         formData.append("classId", sessionStorage.getItem("classId"));
         formData.append("title", title);
         formData.append("description", description);
-        formData.append("file", file); // ✅ Correct way to send file
+        formData.append("file", file); 
 
 
         ApiServices.TeacherAddMaterial(formData)

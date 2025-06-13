@@ -7,33 +7,10 @@ import Courses from './component/pages/courses'
 import Contact from './component/pages/Contact'
 import Pages from './component/pages/Pages'
 import Services from './component/pages/Services'
-import AddAnnouncement from './component/admin/announcements/AddAnnouncement'
-import AllAnnouncement from './component/admin/announcements/AllAnnouncement'
-import SingleAnnouncement from './component/admin/announcements/SingleAnnouncement'
-import SoftDeleteAnnouncement from './component/admin/announcements/SoftDeleteAnnouncement'
-import UpdateAnnouncement from './component/admin/announcements/UpdateAnnouncement'
-import AddAssignment from './component/admin/assignments/AddAssignment'
-import AllAssignment from './component/admin/assignments/AllAssignment'
-import SingleAssignment from './component/admin/assignments/SingleAssignment'
-import SoftDeleteAssignment from './component/admin/assignments/SoftDeleteAssignment'
-import UpdateAssignment from './component/admin/assignments/UpdateAssignment'
 import AddClass from './component/admin/class/AddClass'
 import AllClass from './component/admin/class/AllClass'
-
-
 import UpdateClass from './component/admin/class/UpdateClass'
-import AddComment from './component/admin/comments/AddComment'
-import AllComment from './component/admin/comments/AllComment'
-import SingleComment from './component/admin/comments/SingleComment'
-import SoftDeleteComment from './component/admin/comments/SoftDeleteComment'
-import UpdateComment from './component/admin/comments/UpdateComment'
 import Dashboard from './component/admin/dashboard/Dashboard'
-
-import AddMaterial from './component/admin/materials/AddMaterial'
-import AllMaterial from './component/admin/materials/AllMaterial'
-import SingleMaterial from './component/admin/materials/SingleMaterial'
-import SoftDeleteMaterial from './component/admin/materials/SoftDeleteMaterial'
-import UpdateMaterial from './component/admin/materials/UpdateMaterial'
 import AddStudent from './component/admin/students/AddStudent'
 import AllStudent from './component/admin/students/AllStudent'
 import SingleStudent from './component/admin/students/SingleStudent'
@@ -104,22 +81,6 @@ function App() {
             <Route path='/admin/allstudent' element={<AllStudent></AllStudent>}></Route>
             <Route path='/admin/updatestudent/:id' element={<UpdateStudent></UpdateStudent>}></Route>
 
-            <Route path='/admin/addmaterial' element={<AddMaterial></AddMaterial>}></Route>
-            <Route path='/admin/allmaterial' element={<AllMaterial></AllMaterial>}></Route>
-            <Route path='/admin/updatematerial' element={<UpdateMaterial></UpdateMaterial>}></Route>
-
-            <Route path='/admin/addannouncement' element={<AddAnnouncement></AddAnnouncement>}></Route>
-            <Route path='/admin/allannouncement' element={<AllAnnouncement></AllAnnouncement>}></Route>
-            <Route path='/admin/updateannouncement' element={<UpdateAnnouncement></UpdateAnnouncement>}></Route>
-
-            <Route path='/admin/addassignment' element={<AddAssignment></AddAssignment>}></Route>
-            <Route path='/admin/allassignment' element={<AllAssignment></AllAssignment>}></Route>
-            <Route path='/admin/updateassignment' element={<UpdateAssignment></UpdateAssignment>}></Route>
-
-            <Route path='/admin/addcomment' element={<AddComment></AddComment>}></Route>
-            <Route path='/admin/allcomment' element={<AllComment></AllComment>}></Route>
-            <Route path='/admin/updatecomment' element={<UpdateComment></UpdateComment>}></Route>
-
             <Route path='/admin/adminchangepassword' element={<AdminChangePassword></AdminChangePassword>}></Route>
             
           </Route>
@@ -127,19 +88,19 @@ function App() {
           <Route path="/teacher" element={<TeacherMasterLayout></TeacherMasterLayout>}>
           
             <Route path='/teacher/' element={<ShowClassJoined></ShowClassJoined>}></Route>
-            
+           
 
             <Route path='/teacher/teacheraddmaterial' element={<TeacherAddMaterial></TeacherAddMaterial>}></Route>
             <Route path='/teacher/teacherallmaterial' element={<TeacherAllMaterial></TeacherAllMaterial>}></Route>
-            <Route path='/teacher/teacherupdatematerial' element={<TeacherUpdateMaterial></TeacherUpdateMaterial>}></Route>
+            <Route path='/teacher/teacherupdatematerial/:id' element={<TeacherUpdateMaterial></TeacherUpdateMaterial>}></Route>
 
             <Route path='/teacher/teacheraddassignment' element={<TeacherAddAssignment></TeacherAddAssignment>}></Route>
             <Route path='/teacher/teacherallassignment' element={<TeacherAllAssignment></TeacherAllAssignment>}></Route>
-            <Route path='/teacher/teacherupdateassignment' element={<TeacherUpdateAssignment></TeacherUpdateAssignment>}></Route>
+            <Route path='/teacher/teacherupdateassignment/:id' element={<TeacherUpdateAssignment></TeacherUpdateAssignment>}></Route>
 
             <Route path='/teacher/teacheraddannouncement' element={<TeacherAddAnnouncement></TeacherAddAnnouncement>}></Route>
             <Route path='/teacher/teacherallannouncement' element={<TeacherAllAnnouncement></TeacherAllAnnouncement>}></Route>
-            <Route path='/teacher/teacherupdateannouncement' element={<TeacherUpdateAnnouncement></TeacherUpdateAnnouncement>}></Route>
+            <Route path='/teacher/teacherupdateannouncement/:id' element={<TeacherUpdateAnnouncement></TeacherUpdateAnnouncement>}></Route>
 
             <Route path='/teacher/changepassword' element={<ChangePassword></ChangePassword>}></Route>
             <Route path='/teacher/singleclass/:id/:tId' element={<SingleClass></SingleClass>}></Route>

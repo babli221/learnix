@@ -85,7 +85,8 @@ export default function TeacherAllAssignment() {
                                             <td>{el?.dueDate}</td>
                                             <td>{el?.file}</td>
                                             <td>
-                                                <Link to="/teacher/teacherupdateassignment" className="btn btn-success">
+                                                {/* ✅ Fixed line here: ID added in route */}
+                                                <Link to={`/teacher/teacherupdateassignment/${el._id}`} className="btn btn-success">
                                                     <i className="fa-solid fa-pen-to-square" />
                                                 </Link>
                                             </td>

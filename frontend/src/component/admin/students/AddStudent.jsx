@@ -1,17 +1,29 @@
-import { useState } from "react"
 import ApiServices from "../../layout/ApiServices"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 export default function AddStudent() {
-
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [classname, setClassName] = useState("")
     const [contact, setContact] = useState("")
     const [address, setAddress] = useState("")
     const [qualification, setQualification] = useState("")
-    
+    const [allClasses, setAllClasses] = useState([])
+
+    useEffect(() => {
+        ApiServices.AllClass()
+            .then((res) => {
+                if (res.data.success) {
+                    setAllClasses(res.data.data)
+                }
+            })
+            .catch((err) => {
+                console.log("Failed to fetch class list", err)
+            })
+    }, [])
 
     const nav = useNavigate()
 
@@ -22,10 +34,10 @@ export default function AddStudent() {
             name: name,
             email: email,
             password: password,
+            class: classname,
             contact: contact,
             address: address,
             qualification: qualification,
-            
         }
 
         ApiServices.AddStudent(data)
@@ -35,11 +47,10 @@ export default function AddStudent() {
                     setName("")
                     setEmail("")
                     setPassword("")
+                    setClassName("")
                     setContact("")
                     setAddress("")
                     setQualification("")
-                    setGender("")  // reset gender
-                    setDob("")  // reset dob
                     nav("/admin/allstudent")
                 } else {
                     toast.error(res.data.message)
@@ -107,6 +118,25 @@ export default function AddStudent() {
 
                                     <div className="col-12">
                                         <div className="form-floating">
+                                            <select
+                                                name="class"
+                                                id="classSelect"
+                                                className="form-select"
+                                                onChange={(e) => setClassName(e.target.value)}
+                                            >
+                                                <option value="">-- Select a Class --</option>
+                                                {allClasses.map((el) => (
+                                                    <option key={el._id} value={el._id}>
+                                                        {el.name}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <label htmlFor="classSelect">Class</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-12">
+                                        <div className="form-floating">
                                             <input
                                                 type="text"
                                                 className="form-control"
@@ -143,10 +173,6 @@ export default function AddStudent() {
                                             <label>Qualification</label>
                                         </div>
                                     </div>
-
-                                    
-                                    {/* Date of Birth Field */}
-                                   
 
                                     <div className="col-12">
                                         <button className="btn btn-primary w-100 py-3" type="submit">
