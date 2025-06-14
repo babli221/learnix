@@ -1,4 +1,34 @@
+import { useState } from "react"
+import ApiServices from "../../layout/ApiServices"
+import { toast } from "react-toastify"
+
 export default function StudentChangePassword() {
+    const [currentPassword, setCurrentPassword] = useState("")
+    const [newPassword, setNewPassword] = useState("")
+
+    function updatePass(e) {
+        e.preventDefault()
+
+        let data = {
+            _id: sessionStorage.getItem("id"),
+            currentPassword: currentPassword,
+            newPassword: newPassword
+        }
+
+        ApiServices.StudentChangePasswordd(data)
+            .then((res) => {
+                if (res.data.success) {
+                    toast.success(res.data.message)
+                } else {
+                    toast.error(res.data.message)
+                }
+            })
+            .catch((err) => {
+                toast.error("Something went wrong!")
+                console.log(err)
+            })
+    }
+
     return (
         <>
             {/* Change Password Section */}
@@ -11,21 +41,26 @@ export default function StudentChangePassword() {
                         <h1 className="mb-5">Update Your Password</h1>
                     </div>
 
-                    <div className="row g-4 justify-content-center d-flex">
-                        <div className="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                            <form>
+                    <div className="row g-4 justify-content-center">
+                        <div className="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.3s">
+                            <form onSubmit={updatePass}>
                                 <div className="row g-3">
-                                    {/* Old Password */}
+
+                                    {/* Current Password */}
                                     <div className="col-12">
                                         <div className="form-floating">
                                             <input
                                                 type="password"
                                                 className="form-control"
-                                                id="oldPassword"
-                                                placeholder="Old Password"
+                                                id="currentPassword"
+                                                placeholder="Current Password"
                                                 required
+                                                value={currentPassword}
+                                                onChange={(e) => {
+                                                    setCurrentPassword(e.target.value)
+                                                }}
                                             />
-                                            <label htmlFor="oldPassword">Old Password</label>
+                                            <label htmlFor="currentPassword">Current Password</label>
                                         </div>
                                     </div>
 
@@ -38,22 +73,12 @@ export default function StudentChangePassword() {
                                                 id="newPassword"
                                                 placeholder="New Password"
                                                 required
+                                                value={newPassword}
+                                                onChange={(e) => {
+                                                    setNewPassword(e.target.value)
+                                                }}
                                             />
                                             <label htmlFor="newPassword">New Password</label>
-                                        </div>
-                                    </div>
-
-                                    {/* Confirm New Password */}
-                                    <div className="col-12">
-                                        <div className="form-floating">
-                                            <input
-                                                type="password"
-                                                className="form-control"
-                                                id="confirmPassword"
-                                                placeholder="Confirm New Password"
-                                                required
-                                            />
-                                            <label htmlFor="confirmPassword">Confirm New Password</label>
                                         </div>
                                     </div>
 

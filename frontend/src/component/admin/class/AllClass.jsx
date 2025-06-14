@@ -81,13 +81,12 @@ export default function AllClass() {
                                         <th scope="col">Description</th>
                                         <th scope="col">TeacherName</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Status</th>
                                         <th scope="col">Created At</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">ClassLink</th>
                                         <th scope="col">Edit</th>
                                         <th scope="col">Delete</th>
-
-
-                                    </tr>
+                                        </tr>
                                 </thead>
                                 <tbody>
                                     {allClasses.map((el, index) => {
@@ -97,10 +96,11 @@ export default function AllClass() {
                                                 <td>{el?.name}</td>
                                                 <td>{el?.description}</td>
                                                 <td>{el?.teacherId?.name}</td>
+                                                <td>{el?.teacherId?.email}</td>
+                                                 <td>{el?.createdAt}</td>
+                                                <td>{el?.status ? "Active" : "Inactive"}</td>
                                                 <td>{el?.classLink}</td>
                                                 
-                                                <td>{el?.status ? "Active" : "Inactive"}</td>
-                                                <td>{el?.createdAt}</td>
                                                 <td>
                                                     <Link to={"/admin/updateclass/"+ el._id} className="btn btn-success" >
                                                         <i className="fa-solid fa-pen-to-square" />

@@ -108,11 +108,12 @@ function App() {
           </Route>
 
           <Route path="/student" element={<StudentMasterLayout></StudentMasterLayout>}>
-          <Route path='/student/studentchangepassword' element={<StudentChangePassword></StudentChangePassword>}></Route>
-          <Route path='/student/viewjoinedclasses' element={<ViewJoinedClasses></ViewJoinedClasses>}></Route>
+          <Route path='/student/' element={<ViewJoinedClasses></ViewJoinedClasses>}></Route>
           <Route path='/student/showmaterial' element={<ShowMaterial></ShowMaterial>}></Route>
           <Route path='/student/showassignments' element={<ShowAssignments></ShowAssignments>}></Route>
           <Route path='/student/showannouncements' element={<ShowAnnouncements></ShowAnnouncements>}></Route>
+
+          <Route path='/student/studentchangepassword' element={<StudentChangePassword></StudentChangePassword>}></Route>
           
 
 

@@ -80,11 +80,17 @@ class ApiServices {
     DeleteStudent(data) {
         return axios.post(BaseUrl + "admin/students/softDelete", data, { headers: this.getToken() });
     }
+    // ----- Student > Class -----
+    StudentShowClassJoined(data) {
+        return axios.post(BaseUrl + "student/viewjoinedclasses/student/", data, { headers: this.getToken() });
+    }
+
 
     // ----- Teacher > Class -----
     TeacherShowClassJoined(data) {
         return axios.post(BaseUrl + "teacher/showclassjoined/teacher/", data, { headers: this.getToken() });
     }
+
 
     // ----- Teacher > Material -----
     TeacherAddMaterial(data) {
@@ -151,6 +157,10 @@ class ApiServices {
     // ----- Teacher Change Password -----
     TeacherChangePassword(data) {
         return axios.post(BaseUrl + "teacher/password/change", data, { headers: this.getToken() });
+    }
+    // ----- Student Change Password -----
+    StudentChangePasswordd(data) {
+        return axios.post(BaseUrl + "student/password/change", data, { headers: this.getToken() });
     }
 }
 

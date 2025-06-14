@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function StudentHeader() {
+
+    const nav = useNavigate()
+
+    function logout() {
+        sessionStorage.clear()
+        nav("/")
+    }
+
+
     return (
         <>
             {/* Navbar Start */}
@@ -26,26 +35,27 @@ export default function StudentHeader() {
                     <div className="navbar-nav ms-auto p-4 p-lg-0">
 
 
+
+                        <div className="nav-item dropdown">
+
+                            <Link to="" className="nav-item nav-link active">
+                                Home
+                            </Link>
+
+                        </div>
+
                         <Link to="studentchangepassword" className="nav-item nav-link active">
-                            Change-Password
+                            Student-Change-Password
                         </Link>
-                        <Link to="viewjoinedclasses" className="nav-item nav-link active">
-                            View-Classes-Joined
-                        </Link>
-                        <Link to="showmaterial" className="nav-item nav-link active">
-                            Show-Materials
-                        </Link>
-                        <Link to="showassignments" className="nav-item nav-link active">
-                            Show-Assignments
-                        </Link>
-                        <Link to="showannouncements" className="nav-item nav-link active">
-                            Show-Announcements
-                        </Link>
+
+
+
+
                     </div>
-                    <Link to="" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+                    <button className="btn btn-primary py-4 px-lg-5 d-none d-lg-block" onClick={logout}>
                         Logout
                         <i className="fa fa-arrow-right ms-3" />
-                    </Link>
+                    </button>
                 </div>
             </nav>
             {/* Navbar End */}
