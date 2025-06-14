@@ -58,4 +58,10 @@ router.post("/assign/all", assignClassController.all)
 router.post("/assign/softDelete", assignClassController.softDelete)
 //Assign..........................................
 
+
+router.post("/password/change", userController.changePassword)
+
+router.post("/students/all", studentsController.all)
+
+
 module.exports = router;

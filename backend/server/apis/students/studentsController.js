@@ -53,7 +53,7 @@ const register = (req, res) => {
                     newUser.name = req.body.name
                     newUser.email = req.body.email
                     newUser.password = bcrypt.hashSync(req.body.password, saltRounds)
-                    newUser.userType = 2
+                    newUser.userType = 3
                     newUser.save().then((savedUser) => {
                         Student.countDocuments().then((totalStudents) => {
                             let newStudent = new Student()

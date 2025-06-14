@@ -7,6 +7,8 @@ export default function ViewJoinedClasses() {
 
     const [allClasses, setAllClasses] = useState([])
 
+    const [allStudents, setAllStudents] = useState([])
+
     // --------------------- All API ---------------------
 
     function fetchClasses() {
@@ -29,8 +31,28 @@ export default function ViewJoinedClasses() {
     }
     //make useEffect and call that function in it.
 
-    useEffect(() => {
+
+
+         useEffect(() => {
         fetchClasses()
+
+        ApiServices.AllStudent3()
+            .then((res) => {
+                // console.log("joined classes",res)
+                if (res.data.success) {
+                    // toast.success("All Students Fetched Successfully")
+                   const filteredStudents = res.data.data.filter(student => student.userId === sessionStorage.getItem("id"));
+                    setAllStudents(filteredStudents)
+                    console.log("Filter Students",filteredStudents)
+                }
+                else {
+                    toast.error(res.data.message)
+                }
+            })
+            .catch((err) => {
+                toast.error("Something Went Wrong");
+                console.log(err)
+            })
     }, [])
 
     return (
@@ -40,19 +62,19 @@ export default function ViewJoinedClasses() {
                 <div className="container ">
                     <div className="row g-4 justify-content-center d-flex">
 
-                        {allClasses
-                            .filter(el => el.studentId.userId === sessionStorage.getItem("id"))
-                            .map((el, index) => (
+                        {/* {allClasses
+                                .filter(el => el.class.userId === sessionStorage.getItem("id"))
+                                .map((el, index) => (
                                 <div className="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" key={index}>
                                     <div className="service-item text-center pt-3">
                                         <div className="p-4">
                                             <i className="fa fa-3x fa-graduation-cap text-primary mb-4" />
-                                            <h5><Link to={"/student/singleclass/" + el?._id + "/" + el.studentId._id} className="mb-3">{el?.name}</Link></h5>
+                                            <h5><Link to={"/student/singleclass/" + el?._id + "/" + el.class._id} className="mb-3">{el?.name}</Link></h5>
                                             <p>{el?.description}</p>
                                         </div>
                                     </div>
                                 </div>
-                            ))}
+                            ))} */}
 
 
 
