@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import { toast } from "react-toastify";
 import ApiServices from "../../layout/ApiServices";
 
@@ -33,7 +33,7 @@ export default function ViewJoinedClasses() {
 
 
 
-         useEffect(() => {
+        useEffect(() => {
         fetchClasses()
 
         ApiServices.AllStudent3()
